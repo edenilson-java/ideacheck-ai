@@ -16,7 +16,7 @@ Cada integrante é responsável por registrar os prompts utilizados em sua próp
 
 **Prompt utilizado:**
 
-Com base nos requisitos do mini-projeto avaliativo e no prazo curto de entrega, ajude a decidir qual tema seria mais viável para o grupo desenvolver, considerando que precisamos de uma aplicação com IA funcional no produto, documentação, testes automatizados, PRD, viabilidade, prompts documentados e contribuições rastreáveis no GitHub.
+> Com base nos requisitos do mini-projeto avaliativo e no prazo curto de entrega, ajude a decidir qual tema seria mais viável para o grupo desenvolver, considerando que precisamos de uma aplicação com IA funcional no produto, documentação, testes automatizados, PRD, viabilidade, prompts documentados e contribuições rastreáveis no GitHub.
 
 **Resultado aproveitado:**
 
@@ -32,17 +32,17 @@ Foi definido o tema **IdeaCheck AI — Validador de Ideias de Negócio com IA**,
 
 **Prompt utilizado:**
 
-Ajude a melhorar o nome, slogan e descrição do projeto para um validador de ideias de negócio com IA, mantendo uma promessa realista para um MVP de uma semana.
+> Ajude a melhorar o nome, slogan e descrição do projeto para um validador de ideias de negócio com IA, mantendo uma promessa realista para um MVP de uma semana.
 
 **Resultado aproveitado:**
 
 Nome definido:
 
-IdeaCheck AI — Validador de Ideias de Negócio com IA
+> IdeaCheck AI — Validador de Ideias de Negócio com IA
 
 Slogan definido:
 
-Transforme uma ideia solta em uma análise estruturada de negócio.
+> Transforme uma ideia solta em uma análise estruturada de negócio.
 
 Descrição ajustada para deixar claro que a aplicação gera uma **análise inicial e estruturada**, e não uma validação definitiva de mercado.
 
@@ -56,7 +56,7 @@ Descrição ajustada para deixar claro que a aplicação gera uma **análise ini
 
 **Prompt utilizado:**
 
-Ajude a melhorar a divisão de tarefas dos cinco participantes do grupo, considerando o perfil de cada integrante, o prazo curto, os requisitos do PDF e a necessidade de cada pessoa ter contribuições rastreáveis no GitHub.
+> Ajude a melhorar a divisão de tarefas dos cinco participantes do grupo, considerando o perfil de cada integrante, o prazo curto, os requisitos do PDF e a necessidade de cada pessoa ter contribuições rastreáveis no GitHub.
 
 **Resultado aproveitado:**
 
@@ -78,7 +78,7 @@ Foi proposta a divisão inicial:
 
 **Prompt utilizado:**
 
-Considerando o prazo curto e o risco de cada integrante desenvolver uma parte independente, ajude a definir uma estratégia de repositório-esqueleto com estrutura base, arquivos obrigatórios, branches e divisão de responsabilidades.
+> Considerando o prazo curto e o risco de cada integrante desenvolver uma parte independente, ajude a definir uma estratégia de repositório-esqueleto com estrutura base, arquivos obrigatórios, branches e divisão de responsabilidades.
 
 **Resultado aproveitado:**
 
@@ -102,7 +102,7 @@ Foi definida a estratégia de criar um repositório-esqueleto com:
 
 **Prompt utilizado:**
 
-Crie o conteúdo inicial do docs/PRD.md para o projeto IdeaCheck AI, incluindo visão geral, problema, público-alvo, objetivo do MVP, user stories, requisitos funcionais, requisitos não funcionais, especificação da API, critérios de aceite e fora do escopo.
+> Crie o conteúdo inicial do docs/PRD.md para o projeto IdeaCheck AI, incluindo visão geral, problema, público-alvo, objetivo do MVP, user stories, requisitos funcionais, requisitos não funcionais, especificação da API, critérios de aceite e fora do escopo.
 
 **Resultado aproveitado:**
 
@@ -118,7 +118,7 @@ Foi criado o arquivo `docs/PRD.md` com a seção **Especificação da API**, ser
 
 **Prompt utilizado:**
 
-Crie uma matriz de rastreabilidade para o projeto IdeaCheck AI relacionando os requisitos do mini-projeto, os arquivos do repositório, os responsáveis por cada frente e as evidências esperadas.
+> Crie uma matriz de rastreabilidade para o projeto IdeaCheck AI relacionando os requisitos do mini-projeto, os arquivos do repositório, os responsáveis por cada frente e as evidências esperadas.
 
 **Resultado aproveitado:**
 
@@ -141,8 +141,206 @@ Foi criado o arquivo `docs/MATRIZ_RASTREABILIDADE.md`, relacionando:
 
 **Prompt utilizado:**
 
-Crie um checklist final para o projeto IdeaCheck AI, cobrindo repositório, documentação, uso de IA, funcionalidades mínimas, testes, Pull Requests, contribuições individuais e revisão final antes do envio no AVA.
+> Crie um checklist final para o projeto IdeaCheck AI, cobrindo repositório, documentação, uso de IA, funcionalidades mínimas, testes, Pull Requests, contribuições individuais e revisão final antes do envio no AVA.
 
 **Resultado aproveitado:**
 
 Foi criado o arquivo `docs/checklist-final.md`, usado como controle de entrega antes do envio final do projeto.
+
+---
+
+### Prompt 08 — Criação do arquivo de prompts
+
+**Etapa:** Documentação de uso de IA  
+**Ferramenta:** ChatGPT  
+**Objetivo:** Criar o arquivo `docs/prompts.md` para registrar as interações relevantes com IA utilizadas no projeto.
+
+**Prompt utilizado:**
+
+> Eu não deveria já estar registrando de alguma forma os prompts até aqui? Atualize o arquivo de prompts do projeto com os prompts relevantes utilizados até agora, separando por responsável e mantendo espaço para os demais integrantes registrarem seus próprios prompts.
+
+**Resultado aproveitado:**
+
+Foi estruturado o arquivo `docs/prompts.md` com a seção do Edenilson preenchida e espaços para Ernesto, Filipe, Eliandro e Jardel registrarem os prompts usados em suas respectivas frentes.
+
+---
+
+### Prompt 09 — Criação da viabilidade técnica
+
+**Etapa:** Documentação técnica / viabilidade  
+**Ferramenta:** ChatGPT  
+**Objetivo:** Criar o conteúdo do `docs/VIABILIDADE.md`, abordando problema, papel da IA, custo/benefício, limitações e próximos passos.
+
+**Prompt utilizado:**
+
+> Qual deve ser o conteúdo do arquivo docs/VIABILIDADE.md para o projeto IdeaCheck AI, considerando os requisitos do mini-projeto, o papel funcional da IA, limitações técnicas, custo/benefício, uso de mock e proposta futura com RAG?
+
+**Resultado aproveitado:**
+
+Foi criado o documento `docs/VIABILIDADE.md`, descrevendo a viabilidade técnica do MVP, o papel funcional da IA, as limitações conhecidas, os riscos técnicos, a estratégia com mock e as propostas futuras.
+
+---
+
+### Prompt 10 — Criação do fluxograma
+
+**Etapa:** Documentação técnica / arquitetura  
+**Ferramenta:** ChatGPT  
+**Objetivo:** Criar o conteúdo do `docs/fluxograma.md` em Mermaid, demonstrando o fluxo principal da aplicação.
+
+**Prompt utilizado:**
+
+> Crie o fluxograma do projeto IdeaCheck AI em Mermaid, mostrando o fluxo do usuário no frontend, envio para a API, validação dos campos, chamada ao serviço de IA ou mock, parser da resposta e exibição da análise estruturada.
+
+**Resultado aproveitado:**
+
+Foi criado o arquivo `docs/fluxograma.md` com um fluxo detalhado e um fluxo resumido da aplicação, ambos em Mermaid.
+
+---
+
+### Prompt 11 — Criação do diagrama UML
+
+**Etapa:** Documentação técnica / UML  
+**Ferramenta:** ChatGPT  
+**Objetivo:** Criar o conteúdo do `docs/uml.md` em Mermaid, representando as classes planejadas do MVP.
+
+**Prompt utilizado:**
+
+> Eu não deveria já ter o UML feito em Mermaid como abordado em aula? Crie um diagrama UML inicial para o projeto IdeaCheck AI, considerando controller, DTOs, serviço de IA, cliente real, mock, prompt builder, parser e tratamento de exceções.
+
+**Resultado aproveitado:**
+
+Foi criado o arquivo `docs/uml.md` com um diagrama de classes em Mermaid, representando a arquitetura inicial planejada do MVP.
+
+---
+
+### Prompt 12 — Criação do README
+
+**Etapa:** Documentação principal do repositório  
+**Ferramenta:** ChatGPT  
+**Objetivo:** Criar o conteúdo inicial do `README.md` do projeto.
+
+**Prompt utilizado:**
+
+> Crie o README.md inicial do projeto IdeaCheck AI, incluindo visão geral, problema, papel da IA, stack, estrutura do projeto, modelo de trabalho, divisão de responsabilidades, documentação, contrato da API, execução, testes, engenharia de contexto, registro de prompts, limitações e status do projeto.
+
+**Resultado aproveitado:**
+
+Foi criado o `README.md`, descrevendo o propósito do projeto, o papel da IA, a estrutura de trabalho, a documentação existente, as instruções previstas de execução e teste, além das limitações conhecidas.
+
+---
+
+### Prompt 13 — Criação do template de Pull Request
+
+**Etapa:** Organização do repositório / Pull Requests  
+**Ferramenta:** ChatGPT  
+**Objetivo:** Criar o template de Pull Request do projeto.
+
+**Prompt utilizado:**
+
+> Crie um template de Pull Request para o projeto IdeaCheck AI, com seções para resumo, tipo de alteração, arquivos alterados, requisitos atendidos, como testar, evidências, prompts utilizados e checklist.
+
+**Resultado aproveitado:**
+
+Foi criado o arquivo `.github/pull_request_template.md`, orientando os integrantes a documentarem suas alterações, requisitos atendidos, testes realizados, evidências e prompts utilizados.
+
+---
+
+### Prompt 14 — Revisão e correção dos arquivos de documentação
+
+**Etapa:** Revisão / qualidade  
+**Ferramenta:** ChatGPT e Claude/Opus  
+**Objetivo:** Revisar os arquivos de documentação criados e identificar problemas de formatação, arquivos incompletos ou inconsistências.
+
+**Prompt utilizado:**
+
+> Leia o projeto anexado e me diga o que falta, verificando os arquivos de documentação, README, .gitignore e template de Pull Request. Aponte problemas críticos e ajustes necessários antes da entrega.
+
+**Resultado aproveitado:**
+
+Foram identificados e corrigidos pontos como:
+
+- `docs/VIABILIDADE.md` e `docs/uml.md` com conteúdos trocados;
+- `.github/pull_request_template.md` truncado;
+- necessidade de placeholders no `docs/prompts.md` para os demais integrantes;
+- ajuste de linguagem no README;
+- reforço da documentação de limitações e engenharia de contexto.
+
+---
+
+## Ernesto
+
+> A ser preenchido com os prompts utilizados na frente **Backend/API + CI**.
+
+### Prompt 01 — [Título]
+
+**Etapa:**  
+**Ferramenta:**  
+**Objetivo:**  
+
+**Prompt utilizado:**
+
+> [colar aqui]
+
+**Resultado aproveitado:**
+
+[descrever]
+
+---
+
+## Filipe
+
+> A ser preenchido com os prompts utilizados na frente **Serviço de IA, cliente LLM e mock**.
+
+### Prompt 01 — [Título]
+
+**Etapa:**  
+**Ferramenta:**  
+**Objetivo:**  
+
+**Prompt utilizado:**
+
+> [colar aqui]
+
+**Resultado aproveitado:**
+
+[descrever]
+
+---
+
+## Eliandro
+
+> A ser preenchido com os prompts utilizados na frente **Prompt principal, parser da resposta e critérios de análise**.
+
+### Prompt 01 — [Título]
+
+**Etapa:**  
+**Ferramenta:**  
+**Objetivo:**  
+
+**Prompt utilizado:**
+
+> [colar aqui]
+
+**Resultado aproveitado:**
+
+[descrever]
+
+---
+
+## Jardel
+
+> A ser preenchido com os prompts utilizados na frente **Frontend**.
+
+### Prompt 01 — [Título]
+
+**Etapa:**  
+**Ferramenta:**  
+**Objetivo:**  
+
+**Prompt utilizado:**
+
+> [colar aqui]
+
+**Resultado aproveitado:**
+
+[descrever]
