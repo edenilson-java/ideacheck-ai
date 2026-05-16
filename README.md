@@ -44,18 +44,32 @@ O sistema também prevê modo mock para permitir demonstração e testes mesmo s
 
 ---
 
-## 4. Tecnologias sugeridas
+## 4. Stack
+
+### Backend
 
 - Java 21
 - Spring Boot
 - Maven
+
+### Frontend
+
 - HTML
 - CSS
 - JavaScript
+
+### Testes
+
 - JUnit
 - Mockito
 - MockMvc
+
+### CI/CD
+
 - GitHub Actions
+
+### Documentação
+
 - Markdown
 - Mermaid
 
