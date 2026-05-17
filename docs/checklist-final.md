@@ -50,12 +50,12 @@ O objetivo é garantir que o repositório esteja completo, acessível, funcional
 
 ## 4. Funcionalidades mínimas
 
-- [ ] Aplicação Spring Boot sobe localmente.
-- [ ] Endpoint `GET /api/v1/health` funciona.
-- [ ] Bootstrap mínimo do backend concluído (`IdeacheckAiApplication`, `application.yml`, DTOs e controllers base).
-- [ ] Endpoint `POST /api/v1/validate-idea` funciona.
-- [ ] Request segue o schema definido no PRD.
-- [ ] Response segue o schema definido no PRD.
+- [x] Aplicação Spring Boot sobe localmente.
+- [x] Endpoint `GET /api/v1/health` funciona.
+- [x] Bootstrap mínimo do backend concluído (`IdeacheckAiApplication`, `application.yml`, DTOs e controllers base).
+- [x] Endpoint `POST /api/v1/validate-idea` funciona com mock estático no estado atual.
+- [x] Request segue o schema inicial definido no PRD.
+- [x] Response segue o schema inicial definido no PRD.
 - [ ] Existe modo mock para funcionamento sem chave de API.
 - [ ] Frontend envia dados para a API.
 - [ ] Frontend exibe a análise retornada.
@@ -69,7 +69,7 @@ O objetivo é garantir que o repositório esteja completo, acessível, funcional
 - [ ] Testes da API implementados.
 - [ ] Testes da camada de serviço implementados.
 - [ ] Testes do prompt/parser implementados, se aplicável.
-- [ ] `mvn test` executa com sucesso.
+- [ ] `mvn test` executa com sucesso após inclusão dos testes.
 - [ ] GitHub Actions executa os testes.
 - [ ] GitHub Actions está verde antes da entrega.
 
