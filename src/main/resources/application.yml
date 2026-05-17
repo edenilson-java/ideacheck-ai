@@ -4,7 +4,16 @@ server:
 spring:
     application:
         name: ideacheck-ai
+    profiles:
+        active: mock
+
+ideacheck:
+    ai:
+        api-key: ${OPENAI_API_KEY:}
+        model: gpt-4o-mini
+        base-url: https://api.openai.com/v1
 
 logging:
     level:
         root: INFO
+        br.com.ideacheck: DEBUG

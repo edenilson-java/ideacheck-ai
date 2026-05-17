@@ -415,21 +415,52 @@ A revisão preservou os limites da frente documental do Edenilson, sem criar ser
 
 ## Filipe
 
-> A ser preenchido com os prompts utilizados na frente **Serviço de IA, cliente LLM e mock**.
+> Prompts utilizados na frente **Serviço de IA, cliente LLM e mock**.
 
-### Prompt 01 — [Título]
+### Prompt 01 — Implementação completa da camada de serviço de IA
 
-**Etapa:**  
-**Ferramenta:**  
-**Objetivo:**  
+**Etapa:** Implementação / serviço de IA  
+**Ferramenta:** Kiro (Claude)  
+**Objetivo:** Implementar a camada completa de serviço de IA do projeto, incluindo interface, cliente mock, cliente real (OpenAI), service de validação, testes unitários e integração com o controller existente.
 
 **Prompt utilizado:**
 
-> [colar aqui]
+> Analise o README.md do projeto e sugira como devo proceder com a parte que sou responsável. Minha responsabilidade é: Filipe — Serviço de IA. Responsável por: interface de cliente de IA; cliente real de LLM; cliente mock; serviço de validação da ideia; testes da camada de serviço.
+
+Seguido de confirmação para implementar:
+
+> Sim
 
 **Resultado aproveitado:**
 
-[descrever]
+Foi implementada a camada completa de serviço de IA na branch `feature/ai-service`, com os seguintes artefatos:
+
+**Pacote `br.com.ideacheck.ai`:**
+
+- `AiClient.java` — interface contrato para clientes de IA, permitindo alternância entre mock e real via Spring Profiles;
+- `MockAiClient.java` — implementação mock ativada com `@Profile("mock")`, retorna resposta dinâmica baseada nos dados do request;
+- `OpenAiClient.java` — implementação real usando `RestClient` do Spring 6.1, com chamada à API da OpenAI, montagem de prompt (system + user) e parse do JSON de resposta;
+- `IdeaValidationService.java` — service que orquestra a chamada ao `AiClient` com logging;
+- `AiClientException.java` — exceção customizada para falhas na comunicação com IA.
+
+**Testes (10 testes, todos passando):**
+
+- `MockAiClientTest.java` — 4 testes: resposta completa, uso do título no resumo, tratamento de campos nulos, limite de itens por lista;
+- `IdeaValidationServiceTest.java` — 3 testes: delegação ao client, propagação de exceção, invocação única;
+- `OpenAiClientTest.java` — 3 testes: parse correto da resposta da API, envio do header Authorization, lançamento de exceção em erro HTTP.
+
+**Alterações em arquivos existentes:**
+
+- `IdeaValidationController.java` — refatorado para injetar `IdeaValidationService` em vez de retornar mock estático;
+- `application.yml` — adicionado profile `mock` ativo por padrão e configurações de IA (`api-key`, `model`, `base-url`);
+- `pom.xml` — adicionadas dependências `spring-boot-starter-test` e `mockwebserver` para testes.
+
+**Decisões técnicas:**
+
+- Uso de `@Profile("mock")` / `@Profile("!mock")` para alternar entre mock e real sem alterar código;
+- `RestClient` (Spring 6.1) como cliente HTTP — já disponível no Spring Boot 3.x, sem necessidade de WebFlux;
+- Prompt com instrução explícita para retornar apenas JSON válido, conforme regras do PRD §8.5;
+- MockWebServer (OkHttp) para testar o cliente real sem dependência de API externa.
 
 ---
 
