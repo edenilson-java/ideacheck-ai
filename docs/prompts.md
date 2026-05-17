@@ -289,8 +289,6 @@ Também foi reforçada a necessidade de registrar no `docs/checklist-final.md` a
 
 ---
 
----
-
 ### Prompt 16 — Ajuste emergencial de divisão e bootstrap do backend
 
 **Etapa:** Organização do trabalho / mitigação de risco  
