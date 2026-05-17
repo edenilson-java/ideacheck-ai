@@ -354,6 +354,42 @@ A aplicação subiu localmente na porta `8080` com:
 
 ```bash
 mvn spring-boot:run
+```
+
+Foram validados localmente:
+
+- endpoint `GET /api/v1/health`;
+- endpoint `POST /api/v1/validate-idea`;
+- retorno HTTP `200` no endpoint de validação;
+- resposta mock estática seguindo o schema inicial definido no `docs/PRD.md`.
+
+A validação confirmou que o bootstrap mínimo estava funcional após o PR #4, sem avançar na implementação substantiva das frentes de serviço de IA, prompt/parser, testes, CI ou frontend.
+
+---
+
+### Prompt 19 — Conferência documental pós-merge do PR #4
+
+**Etapa:** Documentação / rastreabilidade / conferência final  
+**Ferramenta:** ChatGPT e Claude/Opus  
+**Objetivo:** Revisar o estado documental do projeto após o merge do PR #4, registrando evidências reais do bootstrap mínimo e preservando a divisão de responsabilidades entre os integrantes.
+
+**Prompt utilizado:**
+
+> Vamos continuar o projeto IdeaCheck AI. Leia o ZIP atual do projeto após o merge do PR #4 e o PDF oficial dos requisitos do mini-projeto. Antes de sugerir qualquer alteração, confirme o estado atual do projeto, os arquivos existentes, os requisitos oficiais, o que já foi feito e o que ainda falta especificamente na minha frente documental. A tarefa é implementar somente minha parte principal como Edenilson: documentação, requisitos, rastreabilidade e conferência final, sem assumir implementação substantiva dos demais integrantes.
+
+**Resultado aproveitado:**
+
+Foi realizada a conferência documental pós-merge do PR #4.
+
+Foram atualizados:
+
+- `README.md`, registrando instruções reais de execução com `mvn spring-boot:run`, endpoints disponíveis no estado atual e status dos testes;
+- `docs/checklist-final.md`, marcando como concluídas apenas as evidências já validadas localmente e mantendo pendentes testes, CI, frontend, modo mock estruturado e tratamento de erros;
+- `docs/MATRIZ_RASTREABILIDADE.md`, registrando as evidências reais do PR #4 e corrigindo o requisito `REQ-13a` para indicar controllers base com mock estático validados após o merge.
+
+Também foi decidido manter no README a data de entrega final em `22/05 via AVA`, conforme orientação posterior do professor, sem substituir pela data anterior presente no PDF oficial.
+
+A revisão preservou os limites da frente documental do Edenilson, sem criar service, `AiClient`, `MockAiClient`, `OpenAiClient`, `PromptBuilder`, `ValidationResponseParser`, `GlobalExceptionHandler`, testes, GitHub Actions ou frontend.
 
 ---
 
