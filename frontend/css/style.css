@@ -1,0 +1,288 @@
+/* ── CSS Custom Properties ─────────────────────────────────────────────── */
+:root {
+  /* Brand */
+  --clr-primary: #7c3aed;
+  --clr-primary-hover: #6d28d9;
+  --clr-primary-light: #ede9fe;
+  --clr-primary-subtle: #f5f3ff;
+
+  /* Background & Surface */
+  --clr-bg: #f8f7ff;
+  --clr-surface: #ffffff;
+  --clr-surface-2: #fafaf9;
+  --clr-surface-3: #f3f4f6;
+
+  /* Border */
+  --clr-border: #e5e7eb;
+  --clr-border-focus: #7c3aed;
+
+  /* Text */
+  --clr-text-primary: #111827;
+  --clr-text-secondary: #4b5563;
+  --clr-text-muted: #9ca3af;
+
+  /* States */
+  --clr-success: #059669;
+  --clr-success-bg: #ecfdf5;
+  --clr-success-border: #a7f3d0;
+  --clr-error: #dc2626;
+  --clr-error-bg: #fef2f2;
+  --clr-error-border: #fecaca;
+  --clr-warning: #d97706;
+  --clr-warning-bg: #fffbeb;
+  --clr-warning-border: #fde68a;
+  --clr-info: #2563eb;
+  --clr-info-bg: #eff6ff;
+  --clr-info-border: #bfdbfe;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow-sm: 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.07), 0 2px 4px -1px rgb(0 0 0 / 0.04);
+  --shadow-lg: 0 12px 24px -4px rgb(0 0 0 / 0.08), 0 4px 8px -2px rgb(0 0 0 / 0.04);
+  --shadow-xl: 0 24px 48px -8px rgb(0 0 0 / 0.1), 0 8px 16px -4px rgb(0 0 0 / 0.05);
+  --shadow-focus: 0 0 0 3px rgb(124 58 237 / 0.2);
+
+  /* Border Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+
+  /* Transitions */
+  --transition-fast: 120ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 320ms ease;
+  --transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Dark Theme ────────────────────────────────────────────────────────── */
+[data-theme='dark'] {
+  --clr-bg: #0f0e17;
+  --clr-surface: #1a1825;
+  --clr-surface-2: #221f30;
+  --clr-surface-3: #2c2940;
+
+  --clr-border: #2e2b3f;
+  --clr-border-focus: #a78bfa;
+
+  --clr-text-primary: #f9f9f9;
+  --clr-text-secondary: #a1a1b5;
+  --clr-text-muted: #6b6b82;
+
+  --clr-primary: #a78bfa;
+  --clr-primary-hover: #8b5cf6;
+  --clr-primary-light: #2e1f5e;
+  --clr-primary-subtle: #1e1a30;
+
+  --clr-success-bg: #052e16;
+  --clr-error-bg: #2d0d0d;
+  --clr-warning-bg: #271900;
+
+  --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.3), 0 2px 4px -1px rgb(0 0 0 / 0.2);
+  --shadow-lg: 0 12px 24px -4px rgb(0 0 0 / 0.4), 0 4px 8px -2px rgb(0 0 0 / 0.2);
+}
+
+/* ── Reset & Base ──────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  color: var(--clr-text-primary);
+  background-color: var(--clr-bg);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+a {
+  color: var(--clr-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ── Layout ────────────────────────────────────────────────────────────── */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+}
+
+.container--wide {
+  max-width: 1000px;
+}
+
+.main {
+  flex: 1;
+  padding: var(--space-10) 0 var(--space-16);
+}
+
+/* ── Header ────────────────────────────────────────────────────────────── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: color-mix(in srgb, var(--clr-bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+}
+
+.header__logo {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--clr-primary), #ec4899);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.header__name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--clr-text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+.hero {
+  text-align: center;
+  padding: var(--space-12) 0 var(--space-10);
+}
+
+.hero__badge {
+  margin-bottom: var(--space-4);
+}
+
+.hero__title {
+  font-size: var(--font-size-4xl);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  color: var(--clr-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.hero__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--clr-text-secondary);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── Footer ────────────────────────────────────────────────────────────── */
+.footer {
+  border-top: 1px solid var(--clr-border);
+  padding: var(--space-8) 0;
+  text-align: center;
+}
+
+.footer p {
+  font-size: var(--font-size-sm);
+  color: var(--clr-text-muted);
+  line-height: 1.7;
+}
+
+/* ── Utilities ─────────────────────────────────────────────────────────── */
+.hidden {
+  display: none !important;
+}
+
+.text-muted {
+  color: var(--clr-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.spin {
+  animation: rotate 0.8s linear infinite;
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}

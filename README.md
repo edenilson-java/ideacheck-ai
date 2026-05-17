@@ -75,7 +75,7 @@ O sistema também prevê modo mock para permitir demonstração e testes mesmo s
 
 ---
 
-## 5. Estrutura inicial do projeto
+## 5. Estrutura do projeto
 
 ```text
 ideacheck-ai/
@@ -90,6 +90,20 @@ ideacheck-ai/
 │   ├── MATRIZ_RASTREABILIDADE.md
 │   └── checklist-final.md
 ├── frontend/
+│   ├── index.html          # Ponto de entrada da aplicação
+│   ├── README.md           # Documentação do frontend
+│   ├── css/
+│   │   ├── style.css       # Design system: custom properties, dark mode, tipografia
+│   │   ├── components.css  # Componentes visuais (cards, botões, score circle, toasts)
+│   │   └── responsive.css  # Breakpoints mobile, tablet e desktop
+│   ├── js/
+│   │   ├── app.js          # Orquestrador: state machine, navegação entre steps, submit
+│   │   ├── api.js          # Camada de API — alterna entre mock e backend real
+│   │   ├── validation.js   # Regras de validação por campo e por step
+│   │   ├── ui.js           # Renderização de componentes e estados visuais
+│   │   └── storage.js      # Autosave de rascunho e preferência de tema
+│   └── mocks/
+│       └── mock-data.js    # Respostas simuladas personalizadas por segmento
 ├── src/
 │   ├── main/
 │   │   ├── java/
@@ -215,6 +229,45 @@ POST /api/v1/validate-idea
 
 ## 10. Como executar
 
+### Frontend
+
+O frontend não depende do backend para rodar — ele usa um mock local por padrão.
+
+**1. Configure o ambiente** copiando o arquivo de exemplo:
+
+```bash
+cp frontend/config.example.js frontend/config.js
+```
+
+Edite `frontend/config.js` conforme necessário:
+
+```js
+window.APP_CONFIG = {
+  BASE_URL: 'http://localhost:8080/api/v1',
+  USE_MOCK: true,       // true = mock local, false = API real
+  MOCK_DELAY_MS: 3200,
+};
+```
+
+**2. Suba um servidor HTTP estático** dentro da pasta `frontend/`:
+
+```bash
+# Python 3
+python3 -m http.server 3000
+
+# Node.js (npx)
+npx serve .
+```
+
+Acesse `http://localhost:3000` no navegador.
+
+> Não abra o `index.html` diretamente via `file://` — o carregamento dos scripts pode falhar por restrições de CORS local.
+
+> `frontend/config.js` está no `.gitignore` e não deve ser commitado. Use `config.example.js` como referência.
+
+Mais detalhes em [`frontend/README.md`](frontend/README.md).
+
+### Backend
 **Pré-requisitos:** Java 21 e Maven instalados.
 
 A partir da raiz do projeto:

@@ -1,0 +1,181 @@
+/* ── Mobile First: base styles are for < 480px ─────────────────────────── */
+
+/* ── Small Mobile (< 360px) ─────────────────────────────────────────────── */
+@media (max-width: 359px) {
+  .hero__title {
+    font-size: 1.75rem;
+  }
+
+  .segment-selector {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .form-step {
+    padding: var(--space-5);
+  }
+}
+
+/* ── Mobile (< 600px) ────────────────────────────────────────────────────── */
+@media (max-width: 599px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  .hero {
+    padding: var(--space-8) 0 var(--space-6);
+  }
+
+  .hero__title {
+    font-size: 2rem;
+    letter-spacing: -0.03em;
+  }
+
+  .hero__subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .form-progress {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .step-indicator__label {
+    font-size: 10px;
+  }
+
+  .form-step {
+    padding: var(--space-5) var(--space-5);
+  }
+
+  .form-step__header h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  .segment-selector {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-2);
+  }
+
+  .segment-card__icon {
+    font-size: 20px;
+  }
+
+  .segment-card__label {
+    font-size: 10px;
+  }
+
+  .form-nav {
+    flex-direction: column-reverse;
+    gap: var(--space-3);
+  }
+
+  .form-nav .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .results-hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-6) 0;
+  }
+
+  .results-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .results-subtitle {
+    max-width: 100%;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-card--full {
+    grid-column: 1;
+  }
+
+  .toast-container {
+    left: var(--space-4);
+    right: var(--space-4);
+    bottom: var(--space-4);
+    max-width: 100%;
+  }
+
+  .loading-card {
+    padding: var(--space-10) var(--space-4);
+  }
+}
+
+/* ── Tablet (600px – 899px) ─────────────────────────────────────────────── */
+@media (min-width: 600px) and (max-width: 899px) {
+  .hero__title {
+    font-size: 2.5rem;
+  }
+
+  .segment-selector {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .results-hero {
+    gap: var(--space-6);
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ── Desktop (≥ 900px) ───────────────────────────────────────────────────── */
+@media (min-width: 900px) {
+  .container {
+    padding: 0 var(--space-6);
+  }
+
+  .results-section .container {
+    max-width: 960px;
+  }
+
+  .form-step {
+    padding: var(--space-10) var(--space-10);
+  }
+
+  .form-progress {
+    padding: var(--space-6) var(--space-10);
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ── Large Desktop (≥ 1200px) ───────────────────────────────────────────── */
+@media (min-width: 1200px) {
+  .hero__title {
+    font-size: 3rem;
+  }
+}
+
+/* ── Reduced Motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── High Contrast ──────────────────────────────────────────────────────── */
+@media (forced-colors: active) {
+  .btn--primary {
+    border: 2px solid ButtonText;
+  }
+
+  .input:focus,
+  .textarea:focus {
+    outline: 3px solid Highlight;
+  }
+}

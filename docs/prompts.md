@@ -455,18 +455,306 @@ A revisão preservou os limites da frente documental do Edenilson, sem criar ser
 
 ## Jardel
 
-> A ser preenchido com os prompts utilizados na frente **Frontend**.
+### Prompt 01 — Criação completa do frontend
 
-### Prompt 01 — [Título]
-
-**Etapa:**  
-**Ferramenta:**  
-**Objetivo:**  
+**Etapa:** Implementação / Frontend  
+**Ferramenta:** Claude Code (claude-sonnet-4-6)  
+**Objetivo:** Criar o frontend completo do IdeaCheck AI com HTML5, CSS3 e JavaScript Vanilla puro, seguindo fielmente os documentos do projeto (PRD, fluxograma, UML, VIABILIDADE e MATRIZ_RASTREABILIDADE).
 
 **Prompt utilizado:**
 
-> [colar aqui]
+Você é um engenheiro frontend sênior especialista em UX/UI.
+
+Crie APENAS o frontend de um formulário baseado nos documentos:
+- @docs/PRD.md  
+- @docs/fluxograma.md  
+- @docs/MATRIZ_RASTREABILIDADE.md  
+- @docs/uml.md  
+- @docs/VIABILIDADE.md  
+
+Regras:
+- Sem backend real
+- Sem frameworks
+- Não usar React, Vue ou Angular
+- Utilizar apenas HTML5, CSS3 e JavaScript Vanilla
+- APIs devem ser mockadas localmente
+
+Objetivo:
+Construir uma interface moderna, responsiva e pronta para produção, seguindo fielmente os documentos do projeto.
+
+Analise os documentos e implemente:
+- campos
+- regras de negócio
+- validações
+- fluxos
+- estados
+- mensagens
+- comportamento esperado
+
+Estrutura esperada:
+/
+  index.html
+  /css
+    style.css
+    components.css
+    responsive.css
+  /js
+    app.js
+    api.js
+    validation.js
+    ui.js
+    storage.js
+  /mocks
+    mock-data.js
+  /assets
+
+Requisitos:
+- UI moderna inspirada em Stripe, Linear, Notion e Vercel
+- Layout clean e minimalista
+- Mobile-first
+- Feedback visual em ações
+- Loading, success e error states
+- Validação amigável
+- Transições suaves
+- Acessibilidade básica
+- Código modular, reutilizável e sem duplicação
+
+Funcionalidades:
+- validação em JS
+- máscaras quando necessário
+- submit mockado
+- prevenção de múltiplos submits
+- mock de API com Promise + setTimeout
+- sucesso, erro e loading simulados
+
+Extras opcionais:
+- multi-step form
+- progress bar
+- localStorage autosave
+- toasts
+- animações suaves
+- resumo antes do envio
+
+Entregáveis:
+- frontend completo
+- HTML organizado
+- CSS responsivo
+- JS modularizado
+- mocks
+- validações
+- README com instruções
+
+Importante:
+- Não gerar interface genérica
+- Priorizar UX, clareza e refinamento visual
+- Usar dados mockados realistas
+- A aplicação deve parecer profissional e pronta para uso
+
+Ao finalizar:
+- preencher @docs/checklist-final.md
+- adicionar este prompt em @docs/prompts.md na seção "## Jardel", linha 420, seguindo o padrão do arquivo
 
 **Resultado aproveitado:**
 
-[descrever]
+Foi criado o frontend completo em `frontend/` com:
+
+- `index.html` — estrutura semântica acessível com formulário multi-step (3 passos: ideia → detalhes → revisão)
+- `css/style.css` — design system com CSS custom properties, suporte a dark mode, tipografia Inter e layout responsivo
+- `css/components.css` — todos os componentes: badge animado, botões, form card, progress bar, segment selector, inputs, loading animation, score circle SVG animado, result cards, tag lists, step list, toast notifications
+- `css/responsive.css` — breakpoints para mobile (<600px), tablet (600–900px) e desktop (≥900px), com suporte a prefers-reduced-motion
+- `js/app.js` — orquestrador principal com state machine, navegação entre passos, autosave no localStorage, submit com prevenção de duplo envio
+- `js/api.js` — serviço mockado com Promise + setTimeout (3.2s de delay realista), flag USE_MOCK para alternar entre mock e API real
+- `js/validation.js` — regras de validação por campo com mensagens em português, validação por passo e inline (no blur e no input)
+- `js/ui.js` — renderização do segment selector, review card, loading steps sequenciais, score circle com animação SVG, result cards, toasts
+- `js/storage.js` — autosave de rascunho e preferência de tema no localStorage
+- `mocks/mock-data.js` — respostas mockadas personalizadas por segmento (Saúde, Educação, Tecnologia, Comércio, Serviços) usando os dados reais do formulário
+
+---
+
+### Prompt 02 — Correções de UX/UI no frontend
+
+**Etapa:** Ajustes visuais / refinamento de UX  
+**Ferramenta:** Claude Code (claude-sonnet-4-6)  
+**Objetivo:** Corrigir pontos de UX e UI identificados após visualização da interface.
+
+**Prompt utilizado:**
+
+Pontos de correções
+
+Na primeira etapa:
+1 - Remova o powered by ai da pagina inicial.
+2 - Centralize as etapas do processo (1 Sua ideia, 2 Detalhes, 3 Revisão). Utilize todo o espaço do formulario dando mais espaçamento entre as etapas.
+3 - Em segmento, deixe todas as opções do mesmo tamanho, pode utilizar duas linhas para melhorar a utilização e nao cortar o nome dos segmentos.
+
+Etapa de resultados:
+1 - As cores do "Analise gerada por ia" estão horriveis de leitura no modo escuro. Melhore a UX.
+2 - A nota da ideia está quebrando, diminua o tamanho para que caiba dentro do circulo.
+
+Ao finalizar:
+- adicionar este prompt em @docs/prompts.md na seção "## Jardel", linha 473, seguindo o padrão do arquivo
+
+**Resultado aproveitado:**
+
+Foram aplicadas as seguintes correções:
+
+- Badge "Powered by AI" removido da seção hero
+- Step indicators centralizados com `justify-content: space-between` ocupando todo o espaço disponível; labels visíveis em todos os tamanhos; ícone do step com `flex-direction: column`
+- Segmento fixado em `repeat(4, 1fr)` em todos os breakpoints (2 linhas de 4), `min-height: 72px` para uniformidade, `word-break: break-word` para nomes completos sem abreviação; nomes completos "Sustentabilidade" e "Entretenimento" restaurados
+- Badge `badge--ai` corrigido no dark mode com override explícito `[data-theme='dark'] .badge--ai` usando cores `#3b2f6e` / `#c4b5fd` para contraste adequado
+- `score-number` reduzido de 32px para 26px e `score-max` de 14px para 11px com `gap: 1px` para garantir encaixe dentro do círculo SVG de 120px
+
+---
+
+### Prompt 03 — Correção do score circle (nota quebrando)
+
+**Etapa:** Ajuste visual / score display  
+**Ferramenta:** Claude Code (claude-sonnet-4-6)  
+**Objetivo:** Corrigir o posicionamento da nota de viabilidade dentro do círculo SVG, que seguia quebrando mesmo após a redução do tamanho da fonte.
+
+**Prompt utilizado:**
+
+> A nota segue quebrando, segue imagem. A nota precisa ficar em um tamanho agradavel e centralizada dentro do ciruclo, de maneira que o usuario consiga ver perfeitamente.
+
+**Resultado aproveitado:**
+
+A causa raiz foi identificada: o `.score-inner` usava `flex-direction: row` com `align-self: flex-end` no elemento `/10`, que o empurrava para fora do centro do círculo. A correção mudou o layout para `flex-direction: column` com `align-items: center` e `justify-content: center`, empilhando o número e o `/10` verticalmente e centralizando ambos dentro do SVG. O número foi ajustado para 30px e o `/10` para 11px com `gap: 2px`.
+
+---
+
+### Prompt 04 — Favicon com ícone do header
+
+**Ferramenta:** Claude Code (claude-sonnet-4-6)  
+**Objetivo:** Adicionar favicon ao `frontend/index.html` usando o mesmo ícone `✦` exibido no logo do header, replicando o gradiente roxo → rosa em um SVG inline via data URI.
+
+**Prompt utilizado:**
+
+> Altere o favicon para o mesmo icone do header. Ao finalizar: - adicionar este prompt em @docs/prompts.md na seção '## Jardel', linha 585, seguindo o padrão do arquivo
+
+**Resultado aproveitado:**
+
+Adicionado `<link rel="icon" type="image/svg+xml">` com data URI SVG inline no `<head>` do `index.html`. O SVG usa um `<rect rx='6'>` com `linearGradient` de `#7c3aed` a `#ec4899` (idêntico ao `.header__logo`) e um `<text>` centralizado com o caractere `✦` em branco. Nenhuma imagem externa foi necessária.
+
+---
+
+### Prompt 05 — README do frontend
+
+**Etapa:** Documentação técnica / frontend  
+**Ferramenta:** Claude Code (claude-sonnet-4-6)  
+**Objetivo:** Criar um `README.md` dentro de `frontend/` explicando a arquitetura de pastas e como rodar o frontend localmente.
+
+**Prompt utilizado:**
+
+> Crie um README.md dentro de @frontend/ explicando a arquitetura de pastas e como rodar o frontend.
+>
+> Ao finalizar adicione também em @docs/prompts.md
+
+**Resultado aproveitado:**
+
+Foi criado o arquivo `frontend/README.md` documentando:
+
+- como rodar o frontend com servidor HTTP estático (Python 3 ou npx serve);
+- aviso sobre não abrir via `file://`;
+- arquitetura de pastas com descrição de cada arquivo;
+- instruções para alternar entre mock e API real via flag `USE_MOCK` em `js/api.js`;
+- funcionamento do dark mode e do autosave via localStorage.
+
+---
+
+### Prompt 06 — Atualização do README principal com o frontend
+
+**Etapa:** Documentação técnica / README  
+**Ferramenta:** Claude Code (claude-sonnet-4-6)  
+**Objetivo:** Atualizar o `README.md` principal do repositório para refletir a arquitetura do frontend implementado e as instruções de execução.
+
+**Prompt utilizado:**
+
+> Altere o @README.md principal com as alterações do frontend que foram desenvolvidas, tanto arquitetura quanto como rodar o frontend.
+
+**Resultado aproveitado:**
+
+Foram aplicadas três atualizações no `README.md` raiz:
+
+- **Seção 5** — estrutura de pastas expandida com todos os arquivos do `frontend/` e descrição de cada um (`index.html`, `css/`, `js/`, `mocks/`);
+- **Seção 8** — link para `frontend/README.md` adicionado à lista de documentos do projeto;
+- **Seção 10** — instruções de execução do frontend separadas do backend, com comandos para servidor HTTP estático (Python 3 / npx), aviso sobre `file://`, instrução da flag `USE_MOCK` e link para `frontend/README.md`.
+
+---
+
+### Prompt 07 — Externalizar configuração do frontend via config.js
+
+**Etapa:** Configuração / ambiente  
+**Ferramenta:** Claude Code (claude-sonnet-4-6)  
+**Objetivo:** Remover as variáveis de configuração hardcoded de `frontend/js/api.js` e externalizá-las em um arquivo `config.js` ignorado pelo git, com um `config.example.js` versionado como referência.
+
+**Prompt utilizado:**
+
+> Em @frontend/js/api.js altere as seguintes variáveis para que sejam pegas de um arquivo .env. Crie também um .env.example de exemplo para subir no repositório.
+>
+> const BASE_URL = 'http://localhost:8080/api/v1';  
+> const USE_MOCK = true;  
+> const MOCK_DELAY_MS = 3200;
+>
+> Adicione no arquivo @docs/prompts.md
+
+**Resultado aproveitado:**
+
+Como o frontend usa JS Vanilla sem bundler, variáveis `.env` não são acessíveis no browser. A solução adotada foi:
+
+- Criado `frontend/config.example.js` (versionado) com `window.APP_CONFIG = { BASE_URL, USE_MOCK, MOCK_DELAY_MS }` como referência;
+- O arquivo real `frontend/config.js` (copiado pelo dev a partir do exemplo) é carregado antes dos demais scripts em `index.html` e adicionado ao `.gitignore`;
+- `frontend/js/api.js` passou a ler de `window.APP_CONFIG`, com fallback para os valores padrão caso o arquivo não exista.
+
+---
+
+### Prompt 08 — Documentar config.js no README do frontend e no README principal
+
+**Etapa:** Documentação técnica / configuração  
+**Ferramenta:** Claude Code (claude-sonnet-4-6)  
+**Objetivo:** Adicionar as instruções de uso do `config.js` nos arquivos `frontend/README.md` e `README.md` principal, mantendo a documentação sincronizada com a implementação.
+
+**Prompt utilizado:**
+
+> Adicione em @frontend/README.md e @README.md as informações sobre o config.js. Adicione isso em @docs/prompts.md também.
+
+**Resultado aproveitado:**
+
+- `frontend/README.md` — adicionada seção **Configuração do ambiente** com instrução de cópia do `config.example.js`, bloco de exemplo do `window.APP_CONFIG`, nota sobre fallback e atualização da arquitetura de pastas para incluir `config.example.js` e `config.js`; seção **Alternando entre mock e API real** atualizada para referenciar `config.js` em vez de `js/api.js`;
+- `README.md` — seção **10. Como executar / Frontend** reescrita com passo a passo explícito: copiar o `config.example.js`, editar o `config.js` e subir o servidor HTTP; adicionado aviso sobre o arquivo não ser versionado.
+
+---
+
+### Prompt 09 — Tratamento de erro de conexão com o backend
+
+**Etapa:** Robustez / tratamento de erros  
+**Ferramenta:** Claude Code (claude-sonnet-4-6)  
+**Objetivo:** Substituir a mensagem genérica "Failed to fetch" por um erro legível e informativo quando `USE_MOCK` é `false` e o backend não está acessível.
+
+**Prompt utilizado:**
+
+> Implemente um tratamento de erro para quando USE_MOCK for false e o backend não estiver rodando. Atualmente está me retornando apenas o erro Failed to fetch. Adicione em @docs/prompts.md
+
+**Resultado aproveitado:**
+
+Em `frontend/js/api.js`:
+
+- Adicionada função auxiliar `_isNetworkError(err)` que detecta `TypeError: Failed to fetch`;
+- `_realValidate` passou a envolver o `fetch` em `try/catch`: erros de rede lançam um objeto estruturado com `status: 0` e mensagem "Não foi possível conectar ao servidor", e outros erros inesperados lançam "Erro de rede inesperado. Tente novamente.";
+- `checkHealth` também passou a capturar erros de rede, retornando `{ status: 'DOWN' }` em vez de lançar uma exceção não tratada.
+
+---
+
+### Prompt 10 — Correção de erro de CORS no backend
+
+**Etapa:** Configuração / integração frontend-backend  
+**Ferramenta:** Claude Code (claude-sonnet-4-6)  
+**Objetivo:** Corrigir o erro de CORS que impedia o frontend de fazer requisições ao backend Spring Boot rodando em `localhost:8080`.
+
+**Prompt utilizado:**
+
+> Estou tomando erro de cors ao tentar fazer o request
+
+**Resultado aproveitado:**
+
+Foi criado o arquivo `src/main/java/br/com/ideacheck/config/CorsConfig.java` implementando `WebMvcConfigurer` com a anotação `@Configuration`. A configuração libera as origens `http://localhost:3000` e `http://127.0.0.1:3000` para os métodos `GET` e `POST` no caminho `/api/**`, permitindo que o frontend sirido via servidor HTTP estático se comunique corretamente com a API.
+
+---
