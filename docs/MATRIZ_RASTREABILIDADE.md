@@ -219,9 +219,9 @@ Justificativa e contexto do ajuste registrados em `docs/prompts.md`, Prompt 16.
 | ID | Requisito funcional | Arquivos relacionados | Responsáveis |
 |---|---|---|---|
 | RF01 | Informar dados da ideia | `ValidationRequest.java` (bootstrap por Edenilson), `frontend/index.html`, `frontend/script.js` | Edenilson (bootstrap) / Ernesto (validações) / Jardel |
-| RF02 | Validar ideia com IA | `IdeaValidationController.java` (stub por Edenilson), `IdeaValidationService.java`, `AiClient.java` | Edenilson (stub) / Ernesto (revisão backend) / Filipe |
+| RF02 | Validar ideia com IA | `IdeaValidationController.java` (controller base com mock estático por Edenilson), `IdeaValidationService.java`, `AiClient.java` | Edenilson (controller base) / Ernesto (revisão backend) / Filipe |
 | RF03 | Retornar análise estruturada | `ValidationResponse.java` (bootstrap por Edenilson), `MockAiClient.java`, `ValidationResponseParser.java` | Edenilson (bootstrap) / Ernesto (revisão backend) / Filipe / Eliandro |
-| RF04 | Disponibilizar endpoint de saúde | `HealthController.java` (stub por Edenilson), `HealthControllerTest.java` | Edenilson (stub) / Ernesto (teste) |
+| RF04 | Disponibilizar endpoint de saúde | `HealthController.java` (controller base validado por Edenilson), `HealthControllerTest.java` | Edenilson (controller base) / Ernesto (teste) |
 | RF05 | Disponibilizar interface simples | `frontend/index.html`, `frontend/styles.css`, `frontend/script.js` | Jardel |
 | RF06 | Tratar erros básicos | `GlobalExceptionHandler.java`, `script.js`, testes | Ernesto / Jardel |
 
