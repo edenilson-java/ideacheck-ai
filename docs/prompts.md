@@ -267,6 +267,28 @@ Foram identificados e corrigidos pontos como:
 
 ---
 
+---
+
+### Prompt 15 — Revisão da viabilidade técnica e checklist final
+
+**Etapa:** Revisão / documentação técnica  
+**Ferramenta:** ChatGPT e Claude/Opus  
+**Objetivo:** Revisar ajustes finais no `docs/VIABILIDADE.md` e no `docs/checklist-final.md`, garantindo aderência aos requisitos e mantendo referências técnicas adequadas.
+
+**Prompt utilizado:**
+
+> Verifique se a seção de viabilidade técnica deve citar referências externas sobre engenharia de contexto ou se é melhor manter uma formulação genérica. Também confira se o checklist final precisa incluir itens sobre migração do repositório para a organização SCTEC e atualização do origin local.
+
+**Resultado aproveitado:**
+
+Foi decidido não citar diretamente materiais internos, nomes específicos de aulas ou arquivos de apoio no `docs/VIABILIDADE.md`.
+
+A seção foi ajustada para usar uma formulação baseada em **boas práticas de engenharia de contexto**, com referência pública ao artigo da Anthropic Engineering Blog, *Effective context engineering for AI agents*.
+
+Também foi reforçada a necessidade de registrar no `docs/checklist-final.md` a conferência sobre eventual migração do repositório para a organização correta e atualização do `origin` local.
+
+---
+
 ## Ernesto
 
 > A ser preenchido com os prompts utilizados na frente **Backend/API + CI**.
