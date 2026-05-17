@@ -309,6 +309,31 @@ Foi decidido manter a stack **Java 21 + Spring Boot** e registrar como **ajuste 
 
 ---
 
+### Prompt 17 - Geracao assistida do bootstrap minimo do Spring Boot
+
+**Etapa:** Implementacao emergencial / backend (scaffold)  
+**Ferramenta:** Codex (GPT-5)  
+**Objetivo:** Gerar com seguranca o bootstrap minimo do backend em Java 21 + Spring Boot 3.5.0, estritamente aderente ao contrato do `docs/PRD.md` secao 8, para destravar integracao com IA/mock e frontend sem avancar na parte substantiva da API.
+
+**Prompt utilizado:**
+
+> Tarefa: completar bootstrap minimo do Spring Boot - IdeaCheck AI. Criar apenas `IdeacheckAiApplication`, `application.yml`, DTOs `ValidationRequest` e `ValidationResponse`, `HealthController` e `IdeaValidationController` com mock estatico conforme PRD secao 8.4, sem criar service, exception handler, testes, CI ou dependencias extras. Ao final, atualizar `docs/checklist-final.md` com item de conferencia do bootstrap e registrar este uso de IA em `docs/prompts.md`.
+
+**Resultado aproveitado:**
+
+Foram gerados os arquivos minimos de inicializacao da API:
+
+- classe principal com `@SpringBootApplication`;
+- configuracao basica no `application.yml`;
+- DTOs em Java 21 records alinhados ao schema do PRD;
+- endpoint `GET /api/v1/health`;
+- endpoint `POST /api/v1/validate-idea` com resposta mock aderente ao contrato;
+- atualizacao do checklist com item especifico para conferencia do bootstrap.
+
+Esse uso de IA foi limitado ao **scaffold tecnico minimo**, mantendo a implementacao substantiva do backend, tratamento de erros, testes e CI na frente originalmente planejada.
+
+---
+
 ## Ernesto
 
 > A ser preenchido com os prompts utilizados na frente **Backend/API + CI**.

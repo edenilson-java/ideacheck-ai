@@ -52,6 +52,7 @@ O objetivo é garantir que o repositório esteja completo, acessível, funcional
 
 - [ ] Aplicação Spring Boot sobe localmente.
 - [ ] Endpoint `GET /api/v1/health` funciona.
+- [ ] Bootstrap mínimo do backend concluído (`IdeacheckAiApplication`, `application.yml`, DTOs e controllers base).
 - [ ] Endpoint `POST /api/v1/validate-idea` funciona.
 - [ ] Request segue o schema definido no PRD.
 - [ ] Response segue o schema definido no PRD.
