@@ -57,9 +57,9 @@ O objetivo é garantir que o repositório esteja completo, acessível, funcional
 - [ ] Request segue o schema definido no PRD.
 - [ ] Response segue o schema definido no PRD.
 - [ ] Existe modo mock para funcionamento sem chave de API.
-- [ ] Frontend envia dados para a API.
-- [ ] Frontend exibe a análise retornada.
-- [ ] Erros básicos são tratados.
+- [x] Frontend envia dados para a API.
+- [x] Frontend exibe a análise retornada.
+- [x] Erros básicos são tratados.
 
 ---
 
@@ -80,7 +80,7 @@ O objetivo é garantir que o repositório esteja completo, acessível, funcional
 - [ ] Ernesto possui commits na parte de Backend/API/CI.
 - [ ] Filipe possui commits na parte de Serviço de IA.
 - [ ] Eliandro possui commits na parte de Prompt/Parser/Critérios.
-- [ ] Jardel possui commits na parte de Frontend.
+- [x] Jardel possui commits na parte de Frontend.
 - [ ] Edenilson possui commits na parte de Documentação/Requisitos.
 - [ ] Pull Requests possuem descrição clara.
 - [ ] Pull Requests explicam o que foi alterado e como testar.
