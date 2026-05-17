@@ -742,3 +742,19 @@ Em `frontend/js/api.js`:
 - `checkHealth` também passou a capturar erros de rede, retornando `{ status: 'DOWN' }` em vez de lançar uma exceção não tratada.
 
 ---
+
+### Prompt 10 — Correção de erro de CORS no backend
+
+**Etapa:** Configuração / integração frontend-backend  
+**Ferramenta:** Claude Code (claude-sonnet-4-6)  
+**Objetivo:** Corrigir o erro de CORS que impedia o frontend de fazer requisições ao backend Spring Boot rodando em `localhost:8080`.
+
+**Prompt utilizado:**
+
+> Estou tomando erro de cors ao tentar fazer o request
+
+**Resultado aproveitado:**
+
+Foi criado o arquivo `src/main/java/br/com/ideacheck/config/CorsConfig.java` implementando `WebMvcConfigurer` com a anotação `@Configuration`. A configuração libera as origens `http://localhost:3000` e `http://127.0.0.1:3000` para os métodos `GET` e `POST` no caminho `/api/**`, permitindo que o frontend sirido via servidor HTTP estático se comunique corretamente com a API.
+
+---
