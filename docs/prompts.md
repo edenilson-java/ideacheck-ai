@@ -289,6 +289,28 @@ Também foi reforçada a necessidade de registrar no `docs/checklist-final.md` a
 
 ---
 
+---
+
+### Prompt 16 — Ajuste emergencial de divisão e bootstrap do backend
+
+**Etapa:** Organização do trabalho / mitigação de risco  
+**Ferramenta:** ChatGPT e Claude/Opus  
+**Objetivo:** Definir como responder à indisponibilidade temporária do responsável inicial pela frente Backend/API e à oferta de um integrante de assumir a frente em outra stack, mantendo coerência com a documentação já versionada em Java 21 + Spring Boot.
+
+**Prompt utilizado:**
+
+> Considerando que o responsável inicial pelo backend só estará disponível próximo da data de entrega, outro integrante se ofereceu para assumir a frente em FastAPI, e toda a documentação do projeto — README, PRD, VIABILIDADE, UML, matriz e fluxograma — está estruturada em Java 21 + Spring Boot, qual a melhor estratégia para destravar o projeto sem trocar a stack nem remover a contribuição substancial prevista para o responsável inicial?
+
+**Resultado aproveitado:**
+
+Foi decidido manter a stack **Java 21 + Spring Boot** e registrar como **ajuste emergencial de divisão**:
+
+- Edenilson assume apenas o **bootstrap mínimo do Spring Boot**: `pom.xml`, `IdeacheckAiApplication`, `application.yml`, DTOs e stubs dos controllers, para destravar as frentes de IA, prompt/parser e integração com o frontend.
+- A parte substantiva da frente Backend/API permanece prevista para o Ernesto: validações com Bean Validation, `GlobalExceptionHandler`, testes com MockMvc, GitHub Actions, revisão/refatoração e integração final.
+- A troca de stack para FastAPI foi recusada para evitar retrabalho documental e manter coerência com o perfil técnico majoritário do grupo e com a documentação já versionada.
+
+---
+
 ## Ernesto
 
 > A ser preenchido com os prompts utilizados na frente **Backend/API + CI**.
