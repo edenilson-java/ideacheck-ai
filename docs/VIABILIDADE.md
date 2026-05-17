@@ -289,7 +289,25 @@ O MVP não implementa RAG, agentes ou ferramentas externas porque o objetivo é 
 
 ---
 
-## 11. O que será implementado no MVP
+## 11. Estado atual e escopo previsto para o MVP
+
+### Já implementado no estado atual
+
+- bootstrap mínimo do backend Spring Boot;
+- endpoint `GET /api/v1/health`;
+- endpoint `POST /api/v1/validate-idea` com mock estático;
+- DTOs iniciais de entrada e saída;
+- documentação técnica inicial;
+- PRD;
+- viabilidade;
+- prompts documentados;
+- fluxograma;
+- UML;
+- matriz de rastreabilidade;
+- checklist final;
+- template de Pull Request.
+
+### Ainda previsto para o MVP
 
 O MVP deve conter:
 

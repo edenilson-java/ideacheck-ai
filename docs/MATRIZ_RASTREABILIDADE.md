@@ -155,7 +155,7 @@ Requisitos cobertos:
 
 #### Ajuste emergencial — Bootstrap mínimo do backend
 
-Devido à indisponibilidade temporária do responsável inicial pela frente Backend/API e para evitar bloqueio das demais frentes, o Edenilson poderá assumir o bootstrap mínimo do Spring Boot.
+Devido à indisponibilidade temporária do responsável inicial pela frente Backend/API e para evitar bloqueio das demais frentes, o Edenilson assumiu o bootstrap mínimo do Spring Boot, já mergeado na `main` por meio do PR #4.
 
 Esse bootstrap inclui apenas:
 
@@ -166,6 +166,13 @@ Esse bootstrap inclui apenas:
 - `src/main/java/br/com/ideacheck/dto/ValidationResponse.java`;
 - `src/main/java/br/com/ideacheck/controller/HealthController.java`;
 - `src/main/java/br/com/ideacheck/controller/IdeaValidationController.java`.
+
+Evidências do estado atual após o PR #4:
+
+- aplicação Spring Boot executada localmente na porta `8080`;
+- endpoint `GET /api/v1/health` validado localmente;
+- endpoint `POST /api/v1/validate-idea` validado localmente com resposta mock estática;
+- registro documental do bootstrap realizado em `README.md`, `docs/checklist-final.md` e `docs/prompts.md`.
 
 A parte substantiva da frente Backend/API permanece prevista para o Ernesto, incluindo:
 
@@ -197,7 +204,7 @@ Justificativa e contexto do ajuste registrados em `docs/prompts.md`, Prompt 16.
 | REQ-11 | UML | `docs/uml.md` | Edenilson |
 | REQ-12 | IA funcional no produto | `IdeaValidationService`, `AiClient`, `PromptBuilder`, `MockAiClient` | Filipe / Eliandro |
 | REQ-13 | Aplicação funcional | Backend + IA/mock + frontend | Ernesto / Filipe / Eliandro / Jardel |
-| REQ-13a | Bootstrap mínimo do Spring Boot no ajuste emergencial | `pom.xml`, `IdeacheckAiApplication`, `application.yml`, DTOs e stubs dos controllers | Edenilson |
+| REQ-13a | Bootstrap mínimo do Spring Boot no ajuste emergencial | `pom.xml`, `IdeacheckAiApplication`, `application.yml`, DTOs e controllers base com mock estático validados após o PR #4 | Edenilson |
 | REQ-14 | Mínimo de 5 testes automatizados | Arquivos em `src/test/java` | Ernesto / Filipe / Eliandro |
 | REQ-15 | GitHub Actions | `.github/workflows/ci.yml` | Ernesto |
 | REQ-16 | Evidência de uso de IA no desenvolvimento | `docs/prompts.md` | Todos |
@@ -212,9 +219,9 @@ Justificativa e contexto do ajuste registrados em `docs/prompts.md`, Prompt 16.
 | ID | Requisito funcional | Arquivos relacionados | Responsáveis |
 |---|---|---|---|
 | RF01 | Informar dados da ideia | `ValidationRequest.java` (bootstrap por Edenilson), `frontend/index.html`, `frontend/script.js` | Edenilson (bootstrap) / Ernesto (validações) / Jardel |
-| RF02 | Validar ideia com IA | `IdeaValidationController.java` (stub por Edenilson), `IdeaValidationService.java`, `AiClient.java` | Edenilson (stub) / Ernesto (revisão backend) / Filipe |
+| RF02 | Validar ideia com IA | `IdeaValidationController.java` (controller base com mock estático por Edenilson), `IdeaValidationService.java`, `AiClient.java` | Edenilson (controller base) / Ernesto (revisão backend) / Filipe |
 | RF03 | Retornar análise estruturada | `ValidationResponse.java` (bootstrap por Edenilson), `MockAiClient.java`, `ValidationResponseParser.java` | Edenilson (bootstrap) / Ernesto (revisão backend) / Filipe / Eliandro |
-| RF04 | Disponibilizar endpoint de saúde | `HealthController.java` (stub por Edenilson), `HealthControllerTest.java` | Edenilson (stub) / Ernesto (teste) |
+| RF04 | Disponibilizar endpoint de saúde | `HealthController.java` (controller base validado por Edenilson), `HealthControllerTest.java` | Edenilson (controller base) / Ernesto (teste) |
 | RF05 | Disponibilizar interface simples | `frontend/index.html`, `frontend/styles.css`, `frontend/script.js` | Jardel |
 | RF06 | Tratar erros básicos | `GlobalExceptionHandler.java`, `script.js`, testes | Ernesto / Jardel |
 
