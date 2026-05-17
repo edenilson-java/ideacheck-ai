@@ -270,6 +270,21 @@ Mitigação:
 - orientar o usuário a escrever descrições objetivas;
 - estruturar o prompt em etapas.
 
+### Relação com boas práticas de engenharia de contexto
+
+As mitigações da seção 10 seguem boas práticas gerais de engenharia de contexto, especialmente no tratamento de entradas do usuário, separação entre dados e instruções, prevenção de prompt injection e exigência de resposta estruturada.
+
+No IdeaCheck AI, essas limitações são tratadas por meio de:
+
+- schema de resposta definido no PRD;
+- prompt estruturado em etapas;
+- separação entre dados do usuário e instruções do sistema;
+- regra para tratar os campos enviados pelo usuário como dados, não como comandos;
+- validação da resposta retornada pela camada de IA;
+- documentação explícita das limitações da IA.
+
+O MVP não implementa RAG, agentes ou ferramentas externas porque o objetivo é manter o escopo viável dentro do prazo. Esses recursos ficam como proposta futura.
+
 ---
 
 ## 11. O que será implementado no MVP
