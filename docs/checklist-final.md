@@ -10,6 +10,9 @@ O objetivo é garantir que o repositório esteja completo, acessível, funcional
 
 - [ ] Repositório criado como `ideacheck-ai`.
 - [ ] Repositório no local correto conforme orientação do tutor.
+- [ ] Repositório migrado para a organização `IA-para-DEVs-SCTEC-T1` após confirmação do Tiago.
+- [ ] Origin local atualizado para a nova URL após a migração.
+- [ ] Link da nova URL testado em aba anônima.
 - [ ] Repositório acessível para avaliação.
 - [ ] Todos os integrantes adicionados como colaboradores.
 - [ ] Cada integrante possui pelo menos um commit real.
