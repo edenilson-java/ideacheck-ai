@@ -334,6 +334,29 @@ Esse uso de IA foi limitado ao **scaffold tecnico minimo**, mantendo a implement
 
 ---
 
+### Prompt 18 — Validação local do bootstrap mínimo do backend
+
+**Etapa:** Validação técnica / conferência de bootstrap  
+**Ferramenta:** ChatGPT  
+**Objetivo:** Conferir se o bootstrap mínimo do backend Spring Boot estava funcional após o merge do PR #4.
+
+**Prompt utilizado:**
+
+> Antes de avisar o grupo, tenho como testar localmente o bootstrap mínimo do backend Spring Boot? Oriente os comandos para validar a aplicação, considerando que o Maven não estava disponível no PATH.
+
+**Resultado aproveitado:**
+
+Foi realizada a validação local do bootstrap mínimo do backend.
+
+O Maven não estava disponível inicialmente no PATH, então foi instalado manualmente em `C:\tools\apache-maven-3.9.16`.
+
+A aplicação subiu localmente na porta `8080` com:
+
+```bash
+mvn spring-boot:run
+
+---
+
 ## Ernesto
 
 > A ser preenchido com os prompts utilizados na frente **Backend/API + CI**.
