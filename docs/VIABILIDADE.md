@@ -272,7 +272,7 @@ Mitigação:
 
 ### Relação com boas práticas de engenharia de contexto
 
-As mitigações da seção 10 seguem boas práticas gerais de engenharia de contexto, especialmente no tratamento de entradas do usuário, separação entre dados e instruções, prevenção de prompt injection e exigência de resposta estruturada.
+As mitigações da seção 10 aplicam boas práticas de **engenharia de contexto** documentadas no artigo de referência da Anthropic *Effective context engineering for AI agents*, especialmente no tratamento das entradas do usuário, separação entre dados e instruções, prevenção de prompt injection e exigência de resposta estruturada.
 
 No IdeaCheck AI, essas limitações são tratadas por meio de:
 
@@ -284,6 +284,8 @@ No IdeaCheck AI, essas limitações são tratadas por meio de:
 - documentação explícita das limitações da IA.
 
 O MVP não implementa RAG, agentes ou ferramentas externas porque o objetivo é manter o escopo viável dentro do prazo. Esses recursos ficam como proposta futura.
+
+**Referência:** Anthropic Engineering Blog. [*Effective context engineering for AI agents*](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents). Publicado em setembro de 2025.
 
 ---
 
