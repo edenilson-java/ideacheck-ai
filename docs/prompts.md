@@ -393,6 +393,36 @@ A revisão preservou os limites da frente documental do Edenilson, sem criar ser
 
 ---
 
+### Prompt 20 — Revisão técnica do PR #7 e validação end-to-end
+
+**Etapa:** Revisão / integração / rastreabilidade  
+**Ferramenta:** ChatGPT e Claude/Opus  
+**Objetivo:** Revisar o PR #7 da frente de serviço de IA, validar testes automatizados, backend, endpoint e integração com o frontend já mergeado.
+
+**Prompt utilizado:**
+
+> Revise tecnicamente o PR #7 da frente de serviço de IA antes do merge. Valide os testes automatizados, o backend, o endpoint `POST /api/v1/validate-idea`, o merge-preview real do GitHub com a `main` atual e a integração com o frontend já mergeado usando `USE_MOCK: false`. Aponte impedimentos reais antes do merge e indique a sequência segura de validação.
+
+**Resultado aproveitado:**
+
+Foi revisado o PR #7 da frente de serviço de IA.
+
+Validações realizadas:
+
+- `mvn test` executado com sucesso;
+- 10 testes executados, 0 falhas e 0 erros;
+- backend iniciado com perfil `mock`;
+- endpoint `POST /api/v1/validate-idea` validado;
+- merge-preview real do GitHub testado com a `main` atual;
+- frontend do PR #6 integrado ao backend do PR #7 com `USE_MOCK: false`;
+- ausência de erro de CORS;
+- ausência de `Failed to fetch`;
+- análise estruturada exibida corretamente no frontend.
+
+Com isso, o PR #7 foi validado tecnicamente e integrado à `main`.
+
+---
+
 ## Ernesto
 
 > A ser preenchido com os prompts utilizados na frente **Backend/API + CI**.

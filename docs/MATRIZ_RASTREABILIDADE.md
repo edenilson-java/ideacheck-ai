@@ -202,10 +202,10 @@ Justificativa e contexto do ajuste registrados em `docs/prompts.md`, Prompt 16.
 | REQ-09 | Prompts documentados | `docs/prompts.md` com seção por integrante | Todos |
 | REQ-10 | Fluxograma | `docs/fluxograma.md` | Edenilson |
 | REQ-11 | UML | `docs/uml.md` | Edenilson |
-| REQ-12 | IA funcional no produto | `IdeaValidationService`, `AiClient`, `PromptBuilder`, `MockAiClient` | Filipe / Eliandro |
+| REQ-12 | IA funcional no produto | `AiClient`, `GeminiAiClient`, `MockAiClient` e `IdeaValidationService` mergeados no PR #7 | Filipe |
 | REQ-13 | Aplicação funcional | Backend + IA/mock + frontend | Ernesto / Filipe / Eliandro / Jardel |
 | REQ-13a | Bootstrap mínimo do Spring Boot no ajuste emergencial | `pom.xml`, `IdeacheckAiApplication`, `application.yml`, DTOs e controllers base com mock estático validados após o PR #4 | Edenilson |
-| REQ-14 | Mínimo de 5 testes automatizados | Arquivos em `src/test/java` | Ernesto / Filipe / Eliandro |
+| REQ-14 | Mínimo de 5 testes automatizados | 10 testes automatizados executados com sucesso via `mvn test` após o PR #7 | Filipe |
 | REQ-15 | GitHub Actions | `.github/workflows/ci.yml` | Ernesto |
 | REQ-16 | Evidência de uso de IA no desenvolvimento | `docs/prompts.md` | Todos |
 | REQ-17 | Limitações conhecidas | `docs/VIABILIDADE.md` | Edenilson |
@@ -218,12 +218,12 @@ Justificativa e contexto do ajuste registrados em `docs/prompts.md`, Prompt 16.
 
 | ID | Requisito funcional | Arquivos relacionados | Responsáveis |
 |---|---|---|---|
-| RF01 | Informar dados da ideia | `ValidationRequest.java` (bootstrap por Edenilson), `frontend/index.html`, `frontend/script.js` | Edenilson (bootstrap) / Ernesto (validações) / Jardel |
-| RF02 | Validar ideia com IA | `IdeaValidationController.java` (controller base com mock estático por Edenilson), `IdeaValidationService.java`, `AiClient.java` | Edenilson (controller base) / Ernesto (revisão backend) / Filipe |
-| RF03 | Retornar análise estruturada | `ValidationResponse.java` (bootstrap por Edenilson), `MockAiClient.java`, `ValidationResponseParser.java` | Edenilson (bootstrap) / Ernesto (revisão backend) / Filipe / Eliandro |
-| RF04 | Disponibilizar endpoint de saúde | `HealthController.java` (controller base validado por Edenilson), `HealthControllerTest.java` | Edenilson (controller base) / Ernesto (teste) |
-| RF05 | Disponibilizar interface simples | `frontend/index.html`, `frontend/styles.css`, `frontend/script.js` | Jardel |
-| RF06 | Tratar erros básicos | `GlobalExceptionHandler.java`, `script.js`, testes | Ernesto / Jardel |
+| RF01 | Informar dados da ideia | `ValidationRequest.java`, `frontend/index.html`, `frontend/js/app.js`, `frontend/js/validation.js` | Edenilson / Jardel |
+| RF02 | Validar ideia com IA | `IdeaValidationController.java`, `IdeaValidationService.java`, `AiClient.java`, `GeminiAiClient.java`, `MockAiClient.java` | Filipe |
+| RF03 | Retornar análise estruturada | `ValidationResponse.java`, `MockAiClient.java`, `GeminiAiClient.java`, `IdeaValidationService.java` | Filipe |
+| RF04 | Disponibilizar endpoint de saúde | `HealthController.java` | Edenilson |
+| RF05 | Disponibilizar interface simples | `frontend/index.html`, `frontend/css/`, `frontend/js/`, `frontend/mocks/mock-data.js` | Jardel |
+| RF06 | Tratar erros básicos | `CorsConfig.java`, `frontend/js/api.js`, `frontend/js/ui.js`, testes da camada de IA | Jardel / Filipe |
 
 ---
 
@@ -233,7 +233,7 @@ Justificativa e contexto do ajuste registrados em `docs/prompts.md`, Prompt 16.
 |---|---|---|---|
 | RNF01 | Execução local documentada | `README.md` | Edenilson |
 | RNF02 | Estrutura de pastas organizada | Estrutura do repositório | Grupo |
-| RNF03 | Pelo menos 5 testes automatizados | `src/test/java` | Ernesto / Filipe / Eliandro |
+| RNF03 | Pelo menos 5 testes automatizados | 10 testes automatizados executados com sucesso via `mvn test` após o PR #7 | Filipe |
 | RNF04 | Documentação obrigatória | `README.md`, `PRD.md`, `VIABILIDADE.md`, `prompts.md`, fluxograma, UML | Edenilson / Todos |
 | RNF05 | Versionamento com branches e PRs | GitHub | Todos |
-| RNF06 | Modo mock | `MockAiClient.java` | Filipe |
+| RNF06 | Modo mock | `MockAiClient.java`, perfil `mock` e frontend testado com `USE_MOCK: false` consumindo backend em `localhost:8080` | Filipe / Jardel |

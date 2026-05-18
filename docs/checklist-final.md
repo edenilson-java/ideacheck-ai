@@ -24,14 +24,14 @@ O objetivo é garantir que o repositório esteja completo, acessível, funcional
 
 ## 2. Documentação obrigatória
 
-- [ ] `README.md` preenchido.
-- [ ] `docs/PRD.md` preenchido.
-- [ ] `docs/VIABILIDADE.md` preenchido.
+- [x] `README.md` preenchido.
+- [x] `docs/PRD.md` preenchido.
+- [x] `docs/VIABILIDADE.md` preenchido.
 - [ ] `docs/prompts.md` preenchido com seção por integrante.
-- [ ] `docs/fluxograma.md` preenchido.
-- [ ] `docs/uml.md` preenchido.
-- [ ] `docs/MATRIZ_RASTREABILIDADE.md` preenchido.
-- [ ] `docs/checklist-final.md` preenchido.
+- [x] `docs/fluxograma.md` preenchido.
+- [x] `docs/uml.md` preenchido.
+- [x] `docs/MATRIZ_RASTREABILIDADE.md` preenchido.
+- [x] `docs/checklist-final.md` preenchido.
 
 ---
 
@@ -90,8 +90,8 @@ O objetivo é garantir que o repositório esteja completo, acessível, funcional
 ## 7. Revisão final
 
 - [ ] Projeto testado localmente.
-- [ ] README contém instruções de execução.
-- [ ] README contém instruções para rodar testes.
+- [x] README contém instruções de execução.
+- [x] README contém instruções para rodar testes.
 - [ ] Link do repositório testado em aba anônima.
 - [ ] Slides de 2 a 3 páginas preparados, se exigidos.
 - [ ] Link final enviado no AVA antes do prazo.
