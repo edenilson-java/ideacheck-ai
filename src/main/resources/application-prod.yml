@@ -1,0 +1,13 @@
+server:
+    port: 8080
+
+ideacheck:
+    ai:
+        api-key: AIzaSyDJIRHvcJOhttcA6eDLjwW0VYAe2aSBXaE
+        model: gemini-flash-latest
+        base-url: https://generativelanguage.googleapis.com/v1beta
+
+logging:
+    level:
+        root: WARN
+        br.com.ideacheck: INFO

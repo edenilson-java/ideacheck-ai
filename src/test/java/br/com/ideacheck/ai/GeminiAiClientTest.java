@@ -10,10 +10,10 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class OpenAiClientTest {
+class GeminiAiClientTest {
 
     private MockWebServer mockServer;
-    private OpenAiClient openAiClient;
+    private GeminiAiClient geminiAiClient;
     private ObjectMapper objectMapper;
 
     @BeforeEach
@@ -22,13 +22,12 @@ class OpenAiClientTest {
         mockServer.start();
 
         objectMapper = new ObjectMapper();
-        String baseUrl = mockServer.url("/").toString();
-        // Remove trailing slash para evitar dupla barra
+        String baseUrl = mockServer.url("").toString();
         if (baseUrl.endsWith("/")) {
             baseUrl = baseUrl.substring(0, baseUrl.length() - 1);
         }
 
-        openAiClient = new OpenAiClient("test-api-key", baseUrl, "gpt-4o-mini", objectMapper);
+        geminiAiClient = new GeminiAiClient("test-api-key", baseUrl, "gemini-flash-latest", objectMapper);
     }
 
     @AfterEach
@@ -37,8 +36,8 @@ class OpenAiClientTest {
     }
 
     @Test
-    @DisplayName("Deve fazer parse correto da resposta da API OpenAI")
-    void shouldParseOpenAiResponseCorrectly() {
+    @DisplayName("Deve fazer parse correto da resposta da API Gemini")
+    void shouldParseGeminiResponseCorrectly() {
         String aiJsonContent = """
             {
               "resumo": "App de delivery saudável.",
@@ -56,25 +55,24 @@ class OpenAiClientTest {
             }
             """;
 
-        String openAiResponse = """
+        String geminiResponse = """
             {
-              "choices": [
+              "candidates": [
                 {
-                  "message": {
-                    "content": %s
+                  "content": {
+                    "parts": [
+                      {
+                        "text": "%s"
+                      }
+                    ]
                   }
                 }
               ]
             }
-            """.formatted(objectMapper.valueToTree(aiJsonContent).toString());
-
-        // A API retorna o JSON como string dentro de "content"
-        String properResponse = """
-            {"choices":[{"message":{"content":"%s"}}]}
             """.formatted(aiJsonContent.replace("\"", "\\\"").replace("\n", "\\n"));
 
         mockServer.enqueue(new MockResponse()
-                .setBody(properResponse)
+                .setBody(geminiResponse)
                 .addHeader("Content-Type", "application/json"));
 
         ValidationRequest request = new ValidationRequest(
@@ -85,7 +83,7 @@ class OpenAiClientTest {
             "Falta de opções saudáveis para delivery."
         );
 
-        ValidationResponse response = openAiClient.analyze(request);
+        ValidationResponse response = geminiAiClient.analyze(request);
 
         assertNotNull(response);
         assertEquals("App de delivery saudável.", response.resumo());
@@ -94,14 +92,14 @@ class OpenAiClientTest {
     }
 
     @Test
-    @DisplayName("Deve enviar Authorization header com API key")
-    void shouldSendAuthorizationHeader() throws Exception {
+    @DisplayName("Deve enviar API key como header X-goog-api-key")
+    void shouldSendApiKeyAsHeader() throws Exception {
         String aiContent = """
             {"resumo":"R","problema":"P","publicoAlvo":"PA","propostaValor":"PV","concorrenciaAlternativas":[],"pontosFortes":[],"riscos":[],"perguntasAbertas":[],"analiseDoSegmento":"A","notaViabilidade":5,"justificativaNota":"J","proximosPassos":[]}
             """.trim();
 
         String responseBody = """
-            {"choices":[{"message":{"content":"%s"}}]}
+            {"candidates":[{"content":{"parts":[{"text":"%s"}]}}]}
             """.formatted(aiContent.replace("\"", "\\\""));
 
         mockServer.enqueue(new MockResponse()
@@ -109,10 +107,11 @@ class OpenAiClientTest {
                 .addHeader("Content-Type", "application/json"));
 
         ValidationRequest request = new ValidationRequest("T", "D", "S", null, null);
-        openAiClient.analyze(request);
+        geminiAiClient.analyze(request);
 
         RecordedRequest recorded = mockServer.takeRequest();
-        assertEquals("Bearer test-api-key", recorded.getHeader("Authorization"));
+        assertEquals("test-api-key", recorded.getHeader("X-goog-api-key"));
+        assertTrue(recorded.getPath().contains("gemini-flash-latest"));
     }
 
     @Test
@@ -124,6 +123,6 @@ class OpenAiClientTest {
 
         ValidationRequest request = new ValidationRequest("T", "D", "S", null, null);
 
-        assertThrows(AiClientException.class, () -> openAiClient.analyze(request));
+        assertThrows(AiClientException.class, () -> geminiAiClient.analyze(request));
     }
 }
