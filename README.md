@@ -273,7 +273,14 @@ Mais detalhes em [`frontend/README.md`](frontend/README.md).
 A partir da raiz do projeto:
 
 ```bash
+# Modo mock (padrão) — funciona sem API key
 mvn spring-boot:run
+```
+
+```bash
+# Modo produção — usa IA real (Gemini, gratuito)
+export GEMINI_API_KEY=sua-chave-aqui
+mvn spring-boot:run -Dspring-boot.run.profiles=prod
 ```
 
 A aplicação sobe localmente em:
