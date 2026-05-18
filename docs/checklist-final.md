@@ -37,14 +37,14 @@ O objetivo é garantir que o repositório esteja completo, acessível, funcional
 
 ## 3. Uso de IA no projeto
 
-- [ ] IA possui papel funcional no produto.
-- [ ] O usuário envia uma ideia de negócio para análise.
-- [ ] O sistema retorna uma análise estruturada com apoio de IA ou mock.
+- [x] IA possui papel funcional no produto.
+- [x] O usuário envia uma ideia de negócio para análise.
+- [x] O sistema retorna uma análise estruturada com apoio de IA ou mock.
 - [ ] O prompt principal está versionado no repositório.
-- [ ] O projeto documenta o uso de IA no desenvolvimento.
+- [x] O projeto documenta o uso de IA no desenvolvimento.
 - [ ] Cada integrante registrou os prompts usados na sua parte.
-- [ ] Limitações da IA estão documentadas.
-- [ ] O projeto deixa claro que a análise é inicial e não validação definitiva de mercado.
+- [x] Limitações da IA estão documentadas.
+- [x] O projeto deixa claro que a análise é inicial e não validação definitiva de mercado.
 
 ---
 
@@ -53,10 +53,10 @@ O objetivo é garantir que o repositório esteja completo, acessível, funcional
 - [x] Aplicação Spring Boot sobe localmente.
 - [x] Endpoint `GET /api/v1/health` funciona.
 - [x] Bootstrap mínimo do backend concluído (`IdeacheckAiApplication`, `application.yml`, DTOs e controllers base).
-- [x] Endpoint `POST /api/v1/validate-idea` funciona com mock estático no estado atual.
+- [x] Endpoint `POST /api/v1/validate-idea` funciona com camada de serviço de IA e modo mock.
 - [x] Request segue o schema inicial definido no PRD.
 - [x] Response segue o schema inicial definido no PRD.
-- [ ] Existe modo mock para funcionamento sem chave de API.
+- [x] Existe modo mock para funcionamento sem chave de API.
 - [x] Frontend envia dados para a API.
 - [x] Frontend exibe a análise retornada.
 - [x] Erros básicos são tratados.
@@ -65,11 +65,11 @@ O objetivo é garantir que o repositório esteja completo, acessível, funcional
 
 ## 5. Testes e qualidade
 
-- [ ] Existem pelo menos 5 testes automatizados.
+- [x] Existem pelo menos 5 testes automatizados.
 - [ ] Testes da API implementados.
-- [ ] Testes da camada de serviço implementados.
+- [x] Testes da camada de serviço implementados.
 - [ ] Testes do prompt/parser implementados, se aplicável.
-- [ ] `mvn test` executa com sucesso após inclusão dos testes.
+- [x] `mvn test` executa com sucesso após inclusão dos testes.
 - [ ] GitHub Actions executa os testes.
 - [ ] GitHub Actions está verde antes da entrega.
 
@@ -78,12 +78,12 @@ O objetivo é garantir que o repositório esteja completo, acessível, funcional
 ## 6. Pull Requests e contribuição individual
 
 - [ ] Ernesto possui commits na parte de Backend/API/CI.
-- [ ] Filipe possui commits na parte de Serviço de IA.
+- [x] Filipe possui commits na parte de Serviço de IA.
 - [ ] Eliandro possui commits na parte de Prompt/Parser/Critérios.
 - [x] Jardel possui commits na parte de Frontend.
-- [ ] Edenilson possui commits na parte de Documentação/Requisitos.
-- [ ] Pull Requests possuem descrição clara.
-- [ ] Pull Requests explicam o que foi alterado e como testar.
+- [x] Edenilson possui commits na parte de Documentação/Requisitos.
+- [x] Pull Requests possuem descrição clara.
+- [x] Pull Requests explicam o que foi alterado e como testar.
 
 ---
 
