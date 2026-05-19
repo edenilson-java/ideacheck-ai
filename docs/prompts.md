@@ -496,21 +496,450 @@ Foi implementada a camada completa de serviço de IA na branch `feature/ai-servi
 
 ## Eliandro
 
-> A ser preenchido com os prompts utilizados na frente **Prompt principal, parser da resposta e critérios de análise**.
+> Prompts utilizados na frente **Prompt principal, parser da resposta e critérios de análise**.
 
-### Prompt 01 — [Título]
+### Prompt 01 — Análise inicial do projeto
 
-**Etapa:**  
-**Ferramenta:**  
-**Objetivo:**  
+**Etapa:** Compreensão do projeto / alinhamento inicial  
+**Ferramenta:** ChatGPT  
+**Objetivo:** Entender o projeto IdeaCheck AI a partir dos arquivos disponíveis no Google Drive, identificando objetivo, escopo, arquitetura, stack, responsabilidades e pontos de atenção.
 
 **Prompt utilizado:**
 
-> [colar aqui]
+> Eu e minha equipe de desenvolvimento estamos trabalhando na criação de um website baseado em IA cujo objetivo é fazer uma análise da ideia de negócio do usuário. Leia os arquivos na pasta ideacheck-ai no Google Drive e faça uma análise do projeto.
 
 **Resultado aproveitado:**
 
-[descrever]
+Foi gerada uma análise geral do projeto **IdeaCheck AI**, compreendendo que a aplicação tem como objetivo transformar uma ideia de negócio descrita pelo usuário em uma análise inicial estruturada, com problema identificado, público-alvo, proposta de valor, concorrentes ou alternativas, riscos, pontos fortes, nota estimada de viabilidade e próximos passos.
+
+Também foram identificados o papel funcional da IA, o contrato da API, a stack Java 21 + Spring Boot, a estrutura do frontend, o uso de modo mock e a divisão de responsabilidades entre os integrantes do grupo.
+
+---
+
+### Prompt 02 — Entendimento da frente Prompt, Parser e Critérios
+
+**Etapa:** Organização da frente de trabalho  
+**Ferramenta:** ChatGPT  
+**Objetivo:** Entender especificamente a responsabilidade do Eliandro no projeto e quais entregáveis deveriam ser desenvolvidos.
+
+**Prompt utilizado:**
+
+> Ok. Agora explique especificamente a minha tarefa no projeto: Eliandro — Prompt, parser e critérios
+
+**Resultado aproveitado:**
+
+Foi esclarecido que a frente do Eliandro deveria garantir que a IA recebesse boas instruções, analisasse a ideia com critérios claros e devolvesse uma resposta estruturada e processável pelo sistema.
+
+A tarefa foi organizada nos seguintes entregáveis:
+
+- prompt principal da IA;
+- critérios de análise da ideia;
+- parser da resposta;
+- `PromptBuilder.java`;
+- exemplos de ideias;
+- testes de prompt e parser;
+- registro dos prompts utilizados no projeto.
+
+---
+
+### Prompt 03 — Pesquisa e estruturação dos critérios de análise
+
+**Etapa:** Definição dos critérios de análise  
+**Ferramenta:** ChatGPT  
+**Objetivo:** Pesquisar metodologias e critérios utilizados em startups e inovação para avaliar ideias de negócio e transformá-los em critérios objetivos para uso em prompts de LLM.
+
+**Prompt utilizado:**
+
+> Pesquise nos principais meios de informação sobre startups e inovação sobre quais são as principais metodologias e critérios para a análise e avaliação de uma ideia de negócio. Depois, com base nos resultados de sua pesquisa, estruture esses critérios em formato markdown.
+> Os critérios devem ser:
+> * concisos e objetivos
+> * otimizados para serem usados em prompts para LLMs
+
+**Resultado aproveitado:**
+
+Foram estruturados critérios de avaliação de ideias de negócio em formato Markdown, com foco em uso por LLMs.
+
+A versão final foi salva em:
+
+```text
+docs/criterios-analise-ideia.md
+```
+
+O documento passou a orientar a avaliação da ideia considerando fatores como:
+
+* clareza do problema;
+* definição do público-alvo;
+* força da proposta de valor;
+* coerência entre problema e solução;
+* evidência de demanda;
+* diferenciação;
+* viabilidade de execução;
+* hipótese de modelo de negócio;
+* facilidade de validação inicial;
+* riscos identificados.
+
+Também foi definida uma escala de nota de viabilidade de 0 a 10.
+
+---
+
+### Prompt 04 — Criação do prompt principal da LLM
+
+**Etapa:** Engenharia de prompt / implementação da camada de IA
+**Ferramenta:** ChatGPT
+**Objetivo:** Criar o prompt principal utilizado na chamada à API da LLM, alinhado ao PRD, ao UML e aos critérios de análise da ideia.
+
+**Prompt utilizado:**
+
+> Você é um desenvolvedor sênior especilista em IA e engenharia de contexto. Com base no seu conhecimento sobre o projeto IdeiaCheck AI escreva o prompt principal que será utilizado para chamada a API da LLM.
+> Para elaboração do prompt, leia as informações e instruções contidas nos arquivos:
+>
+> * docs/criterios-analise-ideia.md
+> * docs/PRD.md
+> * docs/uml.md
+>
+> ---
+>
+> Insira os placeholders para os inputs do usuário/cliente.
+
+**Resultado aproveitado:**
+
+Foi criado o prompt principal da LLM, salvo em:
+
+```text
+src/main/resources/prompts/business-validator-system.txt
+```
+
+O prompt define o papel da IA como avaliadora inicial de ideias de negócio, estabelece regras de segurança e engenharia de contexto, orienta a análise pelos critérios definidos no projeto e exige saída exclusivamente em JSON válido.
+
+
+Também foram inseridos os placeholders para os dados do usuário:
+
+```text
+{{titulo}}
+{{descricao}}
+{{segmento}}
+{{publicoAlvo}}
+{{problema}}
+```
+
+Esses placeholders são substituídos posteriormente pelo `PromptBuilder`.
+
+---
+
+### Prompt 05 — Desenvolvimento do parser da resposta da IA
+
+**Etapa:** Implementação / parser da resposta
+**Ferramenta:** ChatGPT
+**Objetivo:** Criar o componente responsável por receber a resposta bruta da IA, extrair o JSON quando possível, validar o contrato e converter a resposta para `ValidationResponse`.
+
+**Prompt utilizado:**
+
+> Agora, seguindo as definições do projeto, desenvolva o parser da resposta. O parser é o componente que recebe a resposta bruta da IA e tenta transformá-la em um objeto `ValidationResponse`.
+> Escreva o código do `ValidationResponseParser.java` e garanta que o sistema aceite apenas uma resposta compatível com o contrato. O ideal é que ele:
+>
+> * extraia JSON válido quando possível;
+> * rejeite resposta que não seja JSON;
+> * valide se todos os campos obrigatórios existem;
+> * confira se listas são arrays;
+> * confira se `notaViabilidade` é número inteiro;
+> * limite ou rejeite nota menor que 0 ou maior que 10;
+> * trate erro de parse de forma previsível.
+
+**Resultado aproveitado:**
+
+Foi criado o componente:
+
+```text
+src/main/java/br/com/ideacheck/service/ValidationResponseParser.java
+```
+
+O parser passou a validar de forma estrita a resposta da IA, incluindo:
+
+* extração de objeto JSON quando possível;
+* rejeição de resposta vazia, nula ou sem JSON;
+* validação de campos obrigatórios;
+* rejeição de campos extras;
+* validação de campos textuais;
+* validação de listas como arrays de strings;
+* limite máximo de 5 itens por lista;
+* validação de `notaViabilidade` como número inteiro entre 0 e 10;
+* lançamento de exceção previsível em caso de erro de parse.
+
+---
+
+### Prompt 06 — Desenvolvimento do PromptBuilder
+
+**Etapa:** Implementação / montagem do prompt
+**Ferramenta:** ChatGPT
+**Objetivo:** Criar o componente responsável por montar o prompt final enviado à IA a partir do template salvo em recursos e dos dados enviados pelo usuário.
+
+**Prompt utilizado:**
+
+> Ok. Agora, seguindo as definições do projeto, desenvolva o `PromptBuilder.java`. Ele é o componente que monta o prompt final enviado para a IA.
+>
+> Ele deve combinar:
+>
+> * prompt do sistema salvo em `src/main/resources/prompts/business-validator-system.txt`;
+> * dados enviados pelo usuário;
+
+**Resultado aproveitado:**
+
+Foi criado o componente:
+
+```text
+src/main/java/br/com/ideacheck/service/PromptBuilder.java
+```
+
+O `PromptBuilder` passou a carregar o template:
+
+```text
+src/main/resources/prompts/business-validator-system.txt
+```
+
+e substituir os placeholders pelos dados do `ValidationRequest`.
+
+Também foi incluído tratamento para:
+
+* valores nulos como string vazia;
+* escape de aspas, quebras de linha, tabulações e barras invertidas;
+* erro previsível quando o template não é encontrado;
+* validação de placeholders não resolvidos no prompt final.
+
+---
+
+### Prompt 07 — Criação de exemplos de ideias para testes manuais
+
+**Etapa:** Testes manuais / validação de comportamento da IA
+**Ferramenta:** ChatGPT
+**Objetivo:** Criar exemplos de ideias de negócio para testar manualmente o prompt, o parser e o comportamento da IA em diferentes segmentos e níveis de definição.
+
+**Prompt utilizado:**
+
+> Com o objetivo de testar manualmente o código e orientar o comportamento da IA, crie pelo menos de 5 a 10 ideias de exemplos.
+>
+> Os exemplos devem:
+>
+> * conter ideias de diferentes segmentos;
+> * contemplar ideias vagas, ideias moderadamente definidas e ideias bem definidas;
+>
+> Os objetivos são:
+>
+> * validar se o prompt funciona em mais de um segmento;
+> * validar como o modelo se comporta com ideias vagas e mal definidas;
+> * testar o parser;
+> * demonstrar o produto;
+> * evitar que a aplicação fique otimizada para apenas um caso.
+>
+> ---
+>
+> Estruture os exemplos em markdown.
+
+**Resultado aproveitado:**
+
+Foi criado um conjunto de exemplos para testes manuais, contemplando ideias vagas, moderadamente definidas e bem definidas em diferentes segmentos.
+
+O conteúdo foi estruturado para o arquivo:
+
+```text
+docs/exemplos-ideias.md
+```
+
+Os exemplos incluem segmentos como:
+
+* tecnologia;
+* educação;
+* saúde;
+* alimentação;
+* pets;
+* educação corporativa;
+* sustentabilidade;
+* finanças pessoais;
+* logística local.
+
+Também foi incluído um exemplo com tentativa de prompt injection para testar se o prompt ignora instruções maliciosas inseridas nos campos do usuário.
+
+---
+
+### Prompt 08 — Criação do teste do PromptBuilder
+
+**Etapa:** Testes automatizados / prompt
+**Ferramenta:** ChatGPT
+**Objetivo:** Criar testes unitários para validar o comportamento do `PromptBuilder`.
+
+**Prompt utilizado:**
+
+> Você é um desenvolvedor sênior especialista em Java 21, Spring Boot e testes automatizados com JUnit 5.
+>
+> Contexto:
+> Estou trabalhando no projeto avaliativo IdeaCheck AI, uma aplicação que usa IA para analisar ideias de negócio. Minha frente é Prompt, Parser e Critérios.
+>
+> Já existe a classe `PromptBuilder`, responsável por montar o prompt final enviado para a LLM a partir do template:
+>
+> src/main/resources/prompts/business-validator-system.txt
+>
+> O template contém os placeholders:
+>
+> {{titulo}}
+> {{descricao}}
+> {{segmento}}
+> {{publicoAlvo}}
+> {{problema}}
+>
+> O `PromptBuilder` recebe um `ValidationRequest` e deve substituir os placeholders pelos dados do usuário, tratando valores nulos como string vazia e escapando caracteres especiais para preservar o JSON embutido no prompt.
+>
+> Tarefa:
+> Crie o arquivo de teste:
+>
+> src/test/java/br/com/ideacheck/service/PromptBuilderTest.java
+>
+> Requisitos do teste:
+>
+> * usar JUnit 5;
+> * testar que o prompt final inclui os dados do usuário;
+> * testar que todos os placeholders foram substituídos;
+> * testar que instruções importantes do prompt foram preservadas, como retorno exclusivo em JSON, ausência de Markdown e presença de `notaViabilidade`;
+> * testar que campos opcionais nulos, como `publicoAlvo` e `problema`, são tratados como string vazia;
+> * testar que aspas, quebras de linha, tabulações e barras invertidas em inputs do usuário são escapadas corretamente;
+> * testar que `buildPrompt(null)` lança `PromptBuilder.PromptBuilderException`;
+> * manter os testes claros, objetivos e compatíveis com Maven/JUnit;
+> * não alterar código de produção.
+>
+> Antes de implementar, verifique se `ValidationRequest` é um record ou uma classe com getters e adapte a instanciação conforme o código existente.
+>
+> Ao final, informe quais cenários foram cobertos e qual comando devo rodar para executar apenas esse teste.
+
+**Resultado aproveitado:**
+
+Foi criado o teste automatizado:
+
+```text
+src/test/java/br/com/ideacheck/service/PromptBuilderTest.java
+```
+
+O teste cobre:
+
+* inclusão dos dados do usuário no prompt final;
+* substituição completa dos placeholders;
+* preservação de instruções críticas do prompt;
+* tratamento de campos opcionais nulos;
+* escape de caracteres especiais;
+* rejeição de request nulo com exceção previsível.
+
+O teste pode ser executado com:
+
+```bash
+mvn -Dtest=PromptBuilderTest test
+```
+
+---
+
+### Prompt 09 — Criação do teste do ValidationResponseParser
+
+**Etapa:** Testes automatizados / parser
+**Ferramenta:** ChatGPT
+**Objetivo:** Criar testes unitários para validar que o `ValidationResponseParser` aceita apenas respostas compatíveis com o contrato esperado pelo PRD.
+
+**Prompt utilizado:**
+
+> Você é um desenvolvedor sênior especialista em Java 21, Spring Boot e testes automatizados com JUnit 5.
+>
+> Contexto:
+> Estou trabalhando no projeto avaliativo IdeaCheck AI, uma aplicação que usa IA para analisar ideias de negócio. Minha frente é Prompt, Parser e Critérios.
+>
+> Já existe a classe `ValidationResponseParser`, responsável por receber a resposta bruta da IA, extrair um JSON quando possível, validar se a resposta segue o contrato do PRD e converter essa resposta em um objeto `ValidationResponse`.
+
+> O parser deve aceitar apenas respostas compatíveis com o schema esperado:
+>
+> {
+> "resumo": "",
+> "problema": "",
+> "publicoAlvo": "",
+> "propostaValor": "",
+> "concorrenciaAlternativas": [],
+> "pontosFortes": [],
+> "riscos": [],
+> "perguntasAbertas": [],
+> "analiseDoSegmento": "",
+> "notaViabilidade": 0,
+> "justificativaNota": "",
+> "proximosPassos": []
+> }
+>
+> Tarefa:
+> Crie o arquivo de teste:
+>
+> src/test/java/br/com/ideacheck/service/ValidationResponseParserTest.java
+>
+> Requisitos do teste:
+>
+> * usar JUnit 5;
+> * usar `ObjectMapper` real nos testes;
+> * testar que um JSON válido é convertido corretamente em `ValidationResponse`;
+> * testar que o parser extrai o JSON quando a resposta da IA contém texto antes e/ou depois do objeto JSON;
+> * testar que resposta nula, vazia ou sem JSON é rejeitada;
+> * testar que JSON inválido é rejeitado;
+> * testar que campo obrigatório ausente é rejeitado;
+> * testar que campo obrigatório nulo é rejeitado;
+> * testar que campo extra não previsto no contrato é rejeitado;
+> * testar que campos de texto rejeitam valores que não sejam string;
+> * testar que campos de lista rejeitam valores que não sejam array;
+> * testar que listas com itens não string são rejeitadas;
+> * testar que listas com mais de 5 itens são rejeitadas;
+> * testar que `notaViabilidade` precisa ser número inteiro;
+> * testar que `notaViabilidade` como string é rejeitada;
+> * testar que `notaViabilidade` decimal é rejeitada;
+> * testar que `notaViabilidade` menor que 0 é rejeitada;
+> * testar que `notaViabilidade` maior que 10 é rejeitada;
+> * testar que listas vazias e strings vazias são aceitas quando o schema continua válido;
+> * manter os testes claros, objetivos e compatíveis com Maven/JUnit;
+> * não alterar código de produção.
+>
+> Antes de implementar:
+>
+> * verifique se `ValidationResponse` é um record ou classe tradicional;
+> * se for record, use métodos como `response.resumo()` e `response.notaViabilidade()`;
+> * se for classe com getters, adapte para `response.getResumo()` e `response.getNotaViabilidade()`;
+> * verifique o nome exato da exception lançada pelo parser. Se for `ValidationResponseParser.ValidationResponseParseException`, use essa exception nos `assertThrows`.
+>
+> Inclua no teste um método auxiliar `validJson()` que retorne um JSON completo e válido com todos os campos obrigatórios.
+>
+> Ao final, informe:
+>
+> * quais cenários foram cobertos;
+> * qual comando devo rodar para executar apenas esse teste;
+
+**Resultado aproveitado:**
+
+Foi criado o teste automatizado:
+
+```text
+src/test/java/br/com/ideacheck/service/ValidationResponseParserTest.java
+```
+
+O teste cobre:
+
+* conversão de JSON válido em `ValidationResponse`;
+* extração de JSON com texto antes/depois;
+* rejeição de resposta nula, vazia ou sem JSON;
+* rejeição de JSON inválido;
+* rejeição de campo obrigatório ausente;
+* rejeição de campo obrigatório nulo;
+* rejeição de campo extra;
+* rejeição de campos textuais com tipo inválido;
+* rejeição de listas que não sejam arrays;
+* rejeição de listas com itens não string;
+* rejeição de listas com mais de 5 itens;
+* rejeição de `notaViabilidade` como string;
+* rejeição de `notaViabilidade` decimal;
+* rejeição de `notaViabilidade` menor que 0;
+* rejeição de `notaViabilidade` maior que 10;
+* aceitação de strings vazias e listas vazias quando o schema permanece válido.
+
+O teste pode ser executado com:
+
+```bash
+mvn -Dtest=ValidationResponseParserTest test
+```
 
 ---
 
