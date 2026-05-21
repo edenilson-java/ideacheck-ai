@@ -38,3 +38,7 @@ build/
 # Test reports / coverage
 coverage/
 jacoco.exec
+
+# Google Drive files
+.tmp.drivedownload/
+.tmp.driveupload/
