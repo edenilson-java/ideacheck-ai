@@ -293,9 +293,12 @@ O MVP não implementa RAG, agentes ou ferramentas externas porque o objetivo é 
 
 ### Já implementado no estado atual
 
-- bootstrap mínimo do backend Spring Boot;
+- backend Spring Boot funcional com endpoints REST, camada de serviço de IA, tratamento global de erros e testes automatizados;
 - endpoint `GET /api/v1/health`;
-- endpoint `POST /api/v1/validate-idea` com mock estático;
+- endpoint `POST /api/v1/validate-idea` integrado à camada de IA, com modo `mock` para execução local sem chave de API e perfil `prod` para integração com Gemini via variável de ambiente;
+- prompt principal, `PromptBuilder`, `ValidationResponseParser`, critérios de análise e exemplos de ideias documentados;
+- suíte automatizada com 44 testes cobrindo IA, serviço, prompt/parser e controller/API;
+- GitHub Actions configurado para executar `mvn test`.
 - DTOs iniciais de entrada e saída;
 - documentação técnica inicial;
 - PRD;

@@ -57,7 +57,7 @@ Arquivos sugeridos:
 
 - `.env.example`
 - `src/main/java/br/com/ideacheck/service/AiClient.java`
-- `src/main/java/br/com/ideacheck/service/OpenAiClient.java`
+- `src/main/java/br/com/ideacheck/ai/GeminiAiClient.java`
 - `src/main/java/br/com/ideacheck/service/MockAiClient.java`
 - `src/main/java/br/com/ideacheck/service/IdeaValidationService.java`
 - `src/test/java/br/com/ideacheck/service/MockAiClientTest.java`
@@ -204,8 +204,8 @@ Justificativa e contexto do ajuste registrados em `docs/prompts.md`, Prompt 16.
 | REQ-11 | UML | `docs/uml.md` | Edenilson |
 | REQ-12 | IA funcional no produto | `AiClient`, `GeminiAiClient`, `MockAiClient` e `IdeaValidationService` mergeados no PR #7 | Filipe |
 | REQ-13 | Aplicação funcional | Backend + IA/mock + frontend | Ernesto / Filipe / Eliandro / Jardel |
-| REQ-13a | Bootstrap mínimo do Spring Boot no ajuste emergencial | `pom.xml`, `IdeacheckAiApplication`, `application.yml`, DTOs e controllers base com mock estático validados após o PR #4 | Edenilson |
-| REQ-14 | Mínimo de 5 testes automatizados | 10 testes automatizados executados com sucesso via `mvn test` após o PR #7 | Filipe |
+| REQ-13a | Bootstrap mínimo do Spring Boot no ajuste emergencial | `pom.xml`, `IdeacheckAiApplication`, `application.yml`, DTOs e controllers base validados após o PR #4 | Edenilson |
+| REQ-14 | Mínimo de 5 testes automatizados | 44 testes automatizados executados com sucesso via `mvn test` após o PR #9 | Filipe / Eliandro / Ernesto |
 | REQ-15 | GitHub Actions | `.github/workflows/ci.yml` | Ernesto |
 | REQ-16 | Evidência de uso de IA no desenvolvimento | `docs/prompts.md` | Todos |
 | REQ-17 | Limitações conhecidas | `docs/VIABILIDADE.md` | Edenilson |
@@ -233,7 +233,7 @@ Justificativa e contexto do ajuste registrados em `docs/prompts.md`, Prompt 16.
 |---|---|---|---|
 | RNF01 | Execução local documentada | `README.md` | Edenilson |
 | RNF02 | Estrutura de pastas organizada | Estrutura do repositório | Grupo |
-| RNF03 | Pelo menos 5 testes automatizados | 10 testes automatizados executados com sucesso via `mvn test` após o PR #7 | Filipe |
+| RNF03 | Pelo menos 5 testes automatizados | 44 testes automatizados executados com sucesso via `mvn test`, incluindo testes de IA, serviço, prompt/parser e controller/API | Filipe / Eliandro / Ernesto |
 | RNF04 | Documentação obrigatória | `README.md`, `PRD.md`, `VIABILIDADE.md`, `prompts.md`, fluxograma, UML | Edenilson / Todos |
 | RNF05 | Versionamento com branches e PRs | GitHub | Todos |
 | RNF06 | Modo mock | `MockAiClient.java`, perfil `mock` e frontend testado com `USE_MOCK: false` consumindo backend em `localhost:8080` | Filipe / Jardel |

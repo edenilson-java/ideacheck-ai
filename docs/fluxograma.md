@@ -27,7 +27,7 @@ flowchart TD
     J --> K[PromptBuilder monta prompt estruturado]
     K --> L{Chave/API de IA disponível?}
 
-    L -- Sim --> M[OpenAiClient envia prompt para LLM]
+    L -- Sim --> M[GeminiAiClient envia prompt para LLM]
     L -- Não --> N[MockAiClient retorna resposta simulada]
 
     M --> O[IA retorna análise em JSON]

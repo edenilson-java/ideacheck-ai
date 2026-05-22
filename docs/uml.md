@@ -59,7 +59,7 @@ class AiClient {
   +generate(String prompt) String
 }
 
-class OpenAiClient {
+class GeminiAiClient {
   +generate(String prompt) String
 }
 
@@ -93,7 +93,7 @@ IdeaValidationService --> ValidationResponseParser
 IdeaValidationService --> ValidationRequest
 IdeaValidationService --> ValidationResponse
 
-AiClient <|.. OpenAiClient
+AiClient <|.. GeminiAiClient
 AiClient <|.. MockAiClient
 
 ValidationResponseParser --> ValidationResponse
@@ -187,7 +187,7 @@ Interface que abstrai o cliente de IA.
 
 Permite alternar entre implementação real e implementação mock.
 
-### `OpenAiClient`
+### `GeminiAiClient`
 
 Implementação prevista para chamada real a uma API de LLM.
 

@@ -321,7 +321,7 @@ Exemplo de requisição:
 }
 ```
 
-No estado atual (bootstrap mínimo), o endpoint retorna uma resposta **mock estática** seguindo o schema definido em `docs/PRD.md` §8.4. A integração real com a camada de IA será implementada pelas frentes de serviço de IA e prompt/parser.
+No estado atual, o endpoint utiliza a camada de serviço de IA do backend. Em modo `mock`, retorna uma análise estruturada sem depender de chave de API. Em modo `prod`, utiliza integração com Gemini por meio da variável de ambiente `GEMINI_API_KEY`.
 
 ---
 
@@ -337,19 +337,22 @@ mvn test
 
 ### Status atual dos testes
 
-No estado atual do projeto, após o bootstrap mínimo do backend, os testes automatizados ainda não foram adicionados.
+O projeto possui testes automatizados cobrindo:
 
-O requisito de testes permanece previsto no projeto, conforme `docs/PRD.md` e requisitos oficiais do mini-projeto, com mínimo de 5 testes automatizados no repositório.
-
-A implementação dos testes ficará vinculada às frentes responsáveis por:
-
-- controllers/API;
+- camada de IA;
 - serviço de validação da ideia;
-- integração/mock de IA;
-- prompt/parser;
-- fluxo principal de validação.
+- cliente mock;
+- cliente Gemini;
+- prompt builder;
+- parser da resposta da IA;
+- controllers/API;
+- tratamento global de erros.
 
-Até que essa etapa seja implementada, esta seção registra apenas o comando Maven previsto para execução da suíte de testes.
+Na validação final, a suíte executou:
+
+```text
+44 testes, 0 falhas, 0 erros
+```
 
 ---
 
