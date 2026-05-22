@@ -423,6 +423,61 @@ Com isso, o PR #7 foi validado tecnicamente e integrado à `main`.
 
 ---
 
+### Prompt 21 — Revisão final de aderência, segurança e entrega
+
+**Etapa:** Revisão final / segurança / documentação / entrega  
+**Ferramenta:** ChatGPT e Claude/Opus  
+**Objetivo:** Conferir se o projeto IdeaCheck AI atendia aos requisitos oficiais do mini-projeto, validar o estado final do código, remover risco de chave exposta, revisar documentação e preparar a entrega no AVA.
+
+**Prompt utilizado:**
+
+> Verifique se o projeto IdeaCheck AI satisfaz 100% dos requisitos do PDF oficial do mini-projeto avaliativo. Analise README, PRD, VIABILIDADE, prompts, matriz de rastreabilidade, checklist, fluxograma, UML, testes automatizados, GitHub Actions, commits por integrante, uso funcional de IA no produto e possíveis riscos de segurança, especialmente chaves de API expostas. Aponte exatamente o que falta corrigir antes da entrega.
+
+**Resultado aproveitado:**
+
+A revisão final identificou e orientou a correção dos seguintes pontos:
+
+- remoção da chave Gemini exposta em `application-prod.yml`;
+- substituição da chave fixa por variável de ambiente `${GEMINI_API_KEY:}`;
+- validação com `git grep -n "AIza"`, sem retorno após a correção;
+- confirmação de `mvn test` com 44 testes, 0 falhas e 0 erros;
+- confirmação de GitHub Actions verde;
+- conferência de commits rastreáveis de todos os integrantes;
+- atualização do README para remover referências antigas a bootstrap mínimo, mock estático e ausência de testes;
+- atualização da matriz de rastreabilidade para refletir 44 testes, PR #8, PR #9, GitHub Actions, `GlobalExceptionHandler`, `ErrorResponse`, `PromptBuilder` e `ValidationResponseParser`;
+- atualização de `docs/fluxograma.md` e `docs/uml.md` para trocar referências antigas de `OpenAiClient` por `GeminiAiClient`;
+- validação final com backend e frontend funcionando juntos;
+- conferência do repositório público em aba anônima;
+- preparação do conteúdo dos slides finais com base no README e em `docs/VIABILIDADE.md`.
+
+A revisão indicou que o projeto estava pronto para entrega após as correções finais documentais, validação dos testes, verificação de segurança e conferência do repositório público.
+
+---
+
+### Prompt 22 — Preparação dos slides finais do mini-projeto
+
+**Etapa:** Apresentação final  
+**Ferramenta:** Claude/Opus  
+**Objetivo:** Gerar uma apresentação curta, de 2 a 3 slides, cobrindo os requisitos do PDF oficial: problema resolvido, papel funcional da IA no produto e viabilidade técnica.
+
+**Prompt utilizado:**
+
+> Gere 2 a 3 slides em `.pptx` a partir do README e do `docs/VIABILIDADE.md`. Os slides devem cobrir exatamente os requisitos do PDF: problema que a aplicação resolve, como a IA atua como parte funcional do produto e estimativa de viabilidade técnica. Use linguagem objetiva, visual limpo e destaque os pontos principais: IdeaCheck AI, análise estruturada de ideias de negócio, Gemini, modo mock/prod, 44 testes automatizados, GitHub Actions, limitações conhecidas e próximos passos.
+
+**Resultado aproveitado:**
+
+A apresentação final foi estruturada para demonstrar:
+
+- o problema de avaliar ideias de negócio sem método;
+- a proposta do IdeaCheck AI como validador inicial de ideias;
+- o papel da IA como componente funcional do produto;
+- a arquitetura técnica do MVP;
+- os testes automatizados e CI;
+- as limitações conhecidas da análise gerada por IA;
+- os próximos passos previstos.
+
+---
+
 ## Ernesto
 
 > A ser preenchido com os prompts utilizados na frente **Backend/API + CI**.
