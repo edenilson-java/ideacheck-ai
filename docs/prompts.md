@@ -427,19 +427,73 @@ Com isso, o PR #7 foi validado tecnicamente e integrado à `main`.
 
 > A ser preenchido com os prompts utilizados na frente **Backend/API + CI**.
 
-### Prompt 01 — [Título]
+### Prompt 01 — GitHub Actions
 
-**Etapa:**  
-**Ferramenta:**  
-**Objetivo:**  
+**Etapa:**  Implementação / backend  
+**Ferramenta:**  Claude/Sonnet
+**Objetivo:**  GitHub Actions para rodar ⁠mvn test 
 
 **Prompt utilizado:**
 
-> [colar aqui]
+> Crie um workflow do GitHub Actions para essa aplicação que execute testes com mvn test e faça build do projeto a cada push 
+
 
 **Resultado aproveitado:**
 
-[descrever]
+Foi criado o arquivo `.github/workflows/ci.yml`, que define um workflow de CI para o backend Spring Boot.
+
+---
+
+### Prompt 02 — Tratamento global de erros
+
+**Etapa:** Implementação / backend  
+**Ferramenta:** Claude/Sonnet  
+**Objetivo:** Criar tratamento centralizado de exceções seguindo o schema de erro definido no `docs/PRD.md §8.6`.
+
+**Prompt utilizado:**
+
+> Gere tratamento global de erros com @ControllerAdvice / ExceptionHandler
+
+**Resultado aproveitado:**
+
+Foram criados dois arquivos:
+
+- `src/main/java/br/com/ideacheck/dto/ErrorResponse.java` — record com os campos `timestamp`, `status`, `error`, `message` e `details`, com factory method `ErrorResponse.of(...)` e `@JsonFormat` no timestamp seguindo o padrão `yyyy-MM-dd'T'HH:mm:ss` do PRD;
+- `src/main/java/br/com/ideacheck/controller/GlobalExceptionHandler.java` — `@RestControllerAdvice` com handlers específicos para:
+  - `MethodArgumentNotValidException` → HTTP 400, detalhando cada campo inválido;
+  - `HttpMessageNotReadableException` → HTTP 400, para JSON malformado no body;
+  - `AiClientException` → HTTP 502, para falhas na chamada ao Gemini;
+  - `ValidationResponseParser.ValidationResponseParseException` → HTTP 502, para resposta da IA fora do schema;
+  - `PromptBuilder.PromptBuilderException` → HTTP 500, para erros internos ao montar o prompt;
+  - `Exception` → HTTP 500, fallback para erros inesperados.
+
+---
+
+### Prompt 03 — Testes automatizados dos controllers
+
+**Etapa:** Testes / backend  
+**Ferramenta:** Claude/Sonnet  
+**Objetivo:** Criar testes automatizados completos para os controllers da API usando MockMvc, cobrindo cenários de sucesso, validação e erros do `GlobalExceptionHandler`.
+
+**Prompt utilizado:**
+
+> Gere testes automatizados completos com MockMvc para os controllers da API com edge cases
+
+**Resultado aproveitado:**
+
+Foram criados dois arquivos de teste com `@WebMvcTest` e MockMvc:
+
+- `src/test/java/br/com/ideacheck/controller/HealthControllerTest.java` — 1 teste: `GET /api/v1/health` retorna 200 com `status: "UP"` e `application: "IdeaCheck AI"`;
+- `src/test/java/br/com/ideacheck/controller/IdeaValidationControllerTest.java` — 9 testes:
+  - requisição válida com todos os campos → 200 com `ValidationResponse` completo;
+  - requisição válida apenas com campos obrigatórios (opcionais omitidos) → 200;
+  - `titulo` em branco → 400 com `details` não vazio;
+  - `descricao` em branco → 400 com `details` não vazio;
+  - `segmento` em branco → 400 com `details` não vazio;
+  - todos os campos obrigatórios em branco → 400 com `details` de tamanho 3;
+  - JSON malformado no body → 400 com `"Requisição com formato inválido."`;
+  - serviço lança `AiClientException` → 502 com a mensagem da exceção;
+  - serviço lança `ValidationResponseParseException` → 502 com `"Resposta da IA fora do formato esperado."` e detalhe da causa.
 
 ---
 
