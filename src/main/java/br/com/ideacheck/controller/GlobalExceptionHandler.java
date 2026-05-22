@@ -57,7 +57,7 @@ public class GlobalExceptionHandler {
                 .body(ErrorResponse.of(
                         HttpStatus.BAD_GATEWAY.value(),
                         "Bad Gateway",
-                        ex.getMessage(),
+                        "Falha na comunicação com o serviço de IA.",
                         List.of()
                 ));
     }

@@ -190,7 +190,7 @@ class IdeaValidationControllerTest {
                 .andExpect(status().isBadGateway())
                 .andExpect(jsonPath("$.status").value(502))
                 .andExpect(jsonPath("$.error").value("Bad Gateway"))
-                .andExpect(jsonPath("$.message").value("Falha na API Gemini."));
+                .andExpect(jsonPath("$.message").value("Falha na comunicação com o serviço de IA."));
     }
 
     @Test
