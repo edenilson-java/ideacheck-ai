@@ -3,7 +3,7 @@ server:
 
 ideacheck:
     ai:
-        api-key: AIzaSyDJIRHvcJOhttcA6eDLjwW0VYAe2aSBXaE
+        api-key: ${GEMINI_API_KEY:}
         model: gemini-flash-latest
         base-url: https://generativelanguage.googleapis.com/v1beta
 
