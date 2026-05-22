@@ -427,19 +427,45 @@ Com isso, o PR #7 foi validado tecnicamente e integrado à `main`.
 
 > A ser preenchido com os prompts utilizados na frente **Backend/API + CI**.
 
-### Prompt 01 — [Título]
+### Prompt 01 — GitHub Actions
 
-**Etapa:**  
-**Ferramenta:**  
-**Objetivo:**  
+**Etapa:**  Gerar pipeline
+**Ferramenta:**  Claude/Sonnet
+**Objetivo:**  GitHub Actions para rodar ⁠mvn test 
 
 **Prompt utilizado:**
 
-> [colar aqui]
+> Crie um workflow do GitHub Actions para essa aplicação que execute testes com mvn test e faça build do projeto a cada push 
+
 
 **Resultado aproveitado:**
 
-[descrever]
+Foi criado o arquivo `.github/workflows/ci.yml`, que define um workflow de CI para o backend Spring Boot.
+
+---
+
+### Prompt 02 — Tratamento global de erros
+
+**Etapa:** Implementação / backend  
+**Ferramenta:** Claude/Sonnet  
+**Objetivo:** Criar tratamento centralizado de exceções seguindo o schema de erro definido no `docs/PRD.md §8.6`.
+
+**Prompt utilizado:**
+
+> Gere tratamento global de erros com @ControllerAdvice / ExceptionHandler
+
+**Resultado aproveitado:**
+
+Foram criados dois arquivos:
+
+- `src/main/java/br/com/ideacheck/dto/ErrorResponse.java` — record com os campos `timestamp`, `status`, `error`, `message` e `details`, com factory method `ErrorResponse.of(...)` e `@JsonFormat` no timestamp seguindo o padrão `yyyy-MM-dd'T'HH:mm:ss` do PRD;
+- `src/main/java/br/com/ideacheck/controller/GlobalExceptionHandler.java` — `@RestControllerAdvice` com handlers específicos para:
+  - `MethodArgumentNotValidException` → HTTP 400, detalhando cada campo inválido;
+  - `HttpMessageNotReadableException` → HTTP 400, para JSON malformado no body;
+  - `AiClientException` → HTTP 502, para falhas na chamada ao Gemini;
+  - `ValidationResponseParser.ValidationResponseParseException` → HTTP 502, para resposta da IA fora do schema;
+  - `PromptBuilder.PromptBuilderException` → HTTP 500, para erros internos ao montar o prompt;
+  - `Exception` → HTTP 500, fallback para erros inesperados.
 
 ---
 
