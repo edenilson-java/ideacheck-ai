@@ -22,7 +22,7 @@ O objetivo é garantir que os requisitos obrigatórios da entrega sejam cobertos
 
 ### Ernesto — Backend/API + CI
 
-Arquivos sugeridos:
+Arquivos relacionados:
 
 - `pom.xml`
 - `.gitignore`
@@ -33,7 +33,7 @@ Arquivos sugeridos:
 - `src/main/java/br/com/ideacheck/controller/IdeaValidationController.java`
 - `src/main/java/br/com/ideacheck/dto/ValidationRequest.java`
 - `src/main/java/br/com/ideacheck/dto/ValidationResponse.java`
-- `src/main/java/br/com/ideacheck/exception/GlobalExceptionHandler.java`
+- `src/main/java/br/com/ideacheck/controller/GlobalExceptionHandler.java`
 - `src/test/java/br/com/ideacheck/controller/HealthControllerTest.java`
 - `src/test/java/br/com/ideacheck/controller/IdeaValidationControllerTest.java`
 
@@ -53,15 +53,16 @@ Requisitos cobertos:
 
 ### Filipe — Serviço de IA, cliente LLM e mock
 
-Arquivos sugeridos:
+Arquivos relacionados:
 
 - `.env.example`
-- `src/main/java/br/com/ideacheck/service/AiClient.java`
+- `src/main/java/br/com/ideacheck/ai/AiClient.java`
 - `src/main/java/br/com/ideacheck/ai/GeminiAiClient.java`
-- `src/main/java/br/com/ideacheck/service/MockAiClient.java`
-- `src/main/java/br/com/ideacheck/service/IdeaValidationService.java`
-- `src/test/java/br/com/ideacheck/service/MockAiClientTest.java`
-- `src/test/java/br/com/ideacheck/service/IdeaValidationServiceTest.java`
+- `src/main/java/br/com/ideacheck/ai/MockAiClient.java`
+- `src/main/java/br/com/ideacheck/ai/IdeaValidationService.java`
+- `src/test/java/br/com/ideacheck/ai/GeminiAiClientTest.java`
+- `src/test/java/br/com/ideacheck/ai/MockAiClientTest.java`
+- `src/test/java/br/com/ideacheck/ai/IdeaValidationServiceTest.java`
 
 Requisitos cobertos:
 
@@ -76,7 +77,7 @@ Requisitos cobertos:
 
 ### Eliandro — Prompt principal, parser e critérios
 
-Arquivos sugeridos:
+Arquivos relacionados:
 
 - `src/main/resources/prompts/business-validator-system.txt`
 - `src/main/java/br/com/ideacheck/service/PromptBuilder.java`
@@ -99,11 +100,20 @@ Requisitos cobertos:
 
 ### Jardel — Frontend
 
-Arquivos sugeridos:
+Arquivos relacionados:
 
 - `frontend/index.html`
-- `frontend/styles.css`
-- `frontend/script.js`
+- `frontend/README.md`
+- `frontend/config.example.js`
+- `frontend/css/style.css`
+- `frontend/css/components.css`
+- `frontend/css/responsive.css`
+- `frontend/js/app.js`
+- `frontend/js/api.js`
+- `frontend/js/validation.js`
+- `frontend/js/ui.js`
+- `frontend/js/storage.js`
+- `frontend/mocks/mock-data.js`
 
 Requisitos cobertos:
 
@@ -117,7 +127,7 @@ Requisitos cobertos:
 
 ### Edenilson — Documentação, requisitos, conferência e bootstrap mínimo do backend
 
-Arquivos sugeridos:
+Arquivos relacionados:
 
 - `README.md`
 - `docs/PRD.md`
@@ -171,7 +181,7 @@ Evidências do estado atual após o PR #4:
 
 - aplicação Spring Boot executada localmente na porta `8080`;
 - endpoint `GET /api/v1/health` validado localmente;
-- endpoint `POST /api/v1/validate-idea` validado localmente com resposta mock estática;
+- endpoint `POST /api/v1/validate-idea` validado localmente com resposta inicial aderente ao schema do PRD;
 - registro documental do bootstrap realizado em `README.md`, `docs/checklist-final.md` e `docs/prompts.md`.
 
 A parte substantiva da frente Backend/API permanece prevista para o Ernesto, incluindo:
@@ -192,7 +202,7 @@ Justificativa e contexto do ajuste registrados em `docs/prompts.md`, Prompt 16.
 | ID | Requisito | Evidência esperada | Responsável principal |
 |---|---|---|---|
 | REQ-01 | Repositório criado como `ideacheck-ai` | Link do GitHub | Grupo |
-| REQ-02 | Repositório no local correto da organização, se confirmado pelo tutor | Transferência ou criação na organização SCTEC | Grupo |
+| REQ-02 | Repositório no local correto conforme orientação aceita para a entrega | Link do GitHub pessoal validado e acessível | Grupo |
 | REQ-03 | Todos os integrantes com commits | Histórico de commits | Todos |
 | REQ-04 | Branches por funcionalidade | Branches `feature/*` | Todos |
 | REQ-05 | Pull Request com template preenchido | Aba Pull Requests do GitHub | Todos |
@@ -223,7 +233,7 @@ Justificativa e contexto do ajuste registrados em `docs/prompts.md`, Prompt 16.
 | RF03 | Retornar análise estruturada | `ValidationResponse.java`, `MockAiClient.java`, `GeminiAiClient.java`, `IdeaValidationService.java` | Filipe |
 | RF04 | Disponibilizar endpoint de saúde | `HealthController.java` | Edenilson |
 | RF05 | Disponibilizar interface simples | `frontend/index.html`, `frontend/css/`, `frontend/js/`, `frontend/mocks/mock-data.js` | Jardel |
-| RF06 | Tratar erros básicos | `CorsConfig.java`, `frontend/js/api.js`, `frontend/js/ui.js`, testes da camada de IA | Jardel / Filipe |
+| RF06 | Tratar erros básicos | `GlobalExceptionHandler.java`, `ErrorResponse.java`, `frontend/js/api.js`, `frontend/js/ui.js`, testes de controller/API | Ernesto / Jardel |
 
 ---
 

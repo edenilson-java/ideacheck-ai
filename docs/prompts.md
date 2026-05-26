@@ -480,8 +480,6 @@ A apresentação final foi estruturada para demonstrar:
 
 ## Ernesto
 
-> A ser preenchido com os prompts utilizados na frente **Backend/API + CI**.
-
 ### Prompt 01 — GitHub Actions
 
 **Etapa:**  Implementação / backend  
