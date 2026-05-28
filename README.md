@@ -406,7 +406,7 @@ Cada integrante é responsável por preencher sua própria seção.
 Status atual:
 
 ```text
-Em desenvolvimento.
+Finalizado e entregue.
 ```
 
 Meta interna:
